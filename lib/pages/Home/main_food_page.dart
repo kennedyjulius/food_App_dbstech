@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_part1/Home/food_page_body.dart';
+import 'package:food_app_part1/pages/Home/food_page_body.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
@@ -41,7 +41,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor
                       ),
-                      child: Icon(Icons.search, color: Colors.white, size: Dimensions.iconSize24,),
+                      child: Icon(Icons.search, color: Colors.white, size: 24,),
                     ),
                   )
                 ],

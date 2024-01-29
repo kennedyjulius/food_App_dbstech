@@ -84,34 +84,88 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ),
 
         // List of food and images
-        Container(
-          height: 900,
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: AlwaysScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical, // Set scroll direction
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(
-                  left: Dimensions.width20,
-                  right: Dimensions.width20,
-                ),
-                child: Container(
-                  height: 120,
-                  width: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white38,
-                    image: DecorationImage(
-                      image: AssetImage("assets/food1.jpeg"),
-                      fit: BoxFit.cover,
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical, // Set scroll direction
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Row(
+              children: [
+                //image section
+                Container(
+                  margin: EdgeInsets.only(
+                    left: Dimensions.width10,
+                    right: Dimensions.width10,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10, top: 10),
+                    child: Container(
+                      height: Dimensions.listViewImgSize,
+                      width: Dimensions.listViewImgSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        color: Colors.white38,
+                        image: DecorationImage(
+                          image: AssetImage("assets/food1.jpeg"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+                // SizedBox(width: Dimensions.width10,),
+                //text container
+                Expanded(
+                  child: Container(
+                    height: Dimensions.listViewTextContSize,
+                    decoration: BoxDecoration(
+                      color: Colors.white12,
+                      border: Border.all(color: Colors.white38),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(Dimensions.radius20),
+                        bottomRight: Radius.circular(Dimensions.radius20)
+                      )
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BigText(text: "Nutritious fruit meal in China"),
+                          SizedBox(height: Dimensions.height10,),
+                          SmallText(text: "With Chinese characteristics", color: Colors.black26,),
+                          SizedBox(height: Dimensions.height10,),
+                          Row(
+                    children: [
+                      IconAndWidget(
+                        icon: Icons.circle_sharp,
+                        text: "Normal",
+                        iconColor: AppColors.iconColor1,
+                      ),
+                      SizedBox(width: 10),
+                      IconAndWidget(
+                        icon: Icons.location_on,
+                        text: "1.7 km",
+                        iconColor: AppColors.mainColor,
+                      ),
+                      SizedBox(width: 10),
+                      IconAndWidget(
+                        icon: Icons.access_time_rounded,
+                        text: "32 min",
+                        iconColor: AppColors.iconColor2,
+                      ),
+                    ],
+                  )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
         ),
       ],
     );
@@ -183,8 +237,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   ]),
               child: Container(
                 padding: EdgeInsets.only(
-                    top: Dimensions.height15,
-                    left: Dimensions.height15,
+                    top: Dimensions.width15,
+                    left: Dimensions.width15,
                     right: Dimensions.width15),
                 child: Column(
                   children: [
@@ -207,11 +261,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(width: Dimensions.width15),
                         SmallText(text: "4.5", color: Colors.black38),
-                        SizedBox(width: 15),
+                        SizedBox(width: Dimensions.width15),
                         SmallText(text: "1287", color: Colors.black38),
-                        SizedBox(width: 15),
+                        SizedBox(width: Dimensions.width15),
                         SmallText(text: "Comments", color: Colors.black38),
                       ],
                     ),
@@ -227,13 +281,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         IconAndWidget(
                           icon: Icons.location_on,
                           text: "1.7 km",
-                          iconColor: AppColors.iconColor1,
+                          iconColor: AppColors.mainColor,
                         ),
                         SizedBox(width: 10),
                         IconAndWidget(
                           icon: Icons.access_time_rounded,
                           text: "32 min",
-                          iconColor: AppColors.iconColor1,
+                          iconColor: AppColors.iconColor2,
                         ),
                       ],
                     )
