@@ -38,4 +38,7 @@ class Dimensions {
   //List vie size
   static double listViewImgSize = screenWidth / 3.25;
   static double listViewTextContSize = screenWidth / 3.9;
+
+  //bottom height
+   static double bottomHeightBar = screenWidth / 7.03;
 }
