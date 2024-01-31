@@ -114,35 +114,7 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: Colors.white),
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Get.snackbar(
-                              "Successful clicked", "remove button clicked");
-                        },
-                        icon: Icon(
-                          Icons.remove,
-                          color: AppColors.signColor,
-                        )),
-                    SizedBox(
-                      width: Dimensions.width10 / 2,
-                    ),
-                    BigText(text: "0"),
-                    SizedBox(
-                      width: Dimensions.width10 / 2,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          Get.snackbar("Successful clicked", "Add Button clicked");
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          color: AppColors.signColor,
-                        )
-                        ),
-                  ],
-                ),
+                child: Icon(Icons.favorite, color: AppColors.mainColor,)
               ),
               Container(
                 padding: EdgeInsets.only(
