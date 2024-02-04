@@ -2,24 +2,24 @@ import 'package:food_app_part1/data/repository/popular_product_repo.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
 import 'package:get/get.dart';
 
-class PopularProductController extends GetxController {
-  final PopularProductRepo popularProductRepo;
+class RecommendedProductController extends GetxController {
+  final RecommendedProductController recommendedProductRepo;
 
-  PopularProductController({required this.popularProductRepo});
+  RecommendedProductController(this.recommendedProductRepo, {required recommendedProductRepo},);
 
-  List<dynamic> _popularProductList = [];
-  List<dynamic> get popularProductList => _popularProductList;
+  List<ProductsModel> _recommendedProductList = [];
+  List<ProductsModel> get recommendedProductList => _recommendedProductList;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
-  Future<void> getPopularProductList() async {
+  Future<void> getRecommendedProductList() async {
     try {
-      Response response = await popularProductRepo.getPopularProductList();
+      Response response = await recommendedProductRepo.getRecommendedProductList();
       if (response.statusCode == 200) {
         //print("got products");
-        _popularProductList = [];
-        _popularProductList
+        _recommendedProductList = [];
+        _recommendedProductList
             .addAll(Product.fromJson(response.body).products as Iterable);
         //print(_popularProductList);
         _isLoaded = true;
