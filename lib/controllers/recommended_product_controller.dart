@@ -1,11 +1,13 @@
-import 'package:food_app_part1/data/repository/popular_product_repo.dart';
-import 'package:food_app_part1/modal/products_modal.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:get/get.dart';
 
-class RecommendedProductController extends GetxController {
-  final RecommendedProductController recommendedProductRepo;
+import 'package:food_app_part1/data/repository/recommended_product_repo.dart';
+import 'package:food_app_part1/modal/products_modal.dart';
 
-  RecommendedProductController(this.recommendedProductRepo, {required recommendedProductRepo},);
+class RecommendedProductController extends GetxController {
+  final RecommendedProductRepo recommendedProductRepo;
+
+  RecommendedProductController({required this.recommendedProductRepo});
 
   List<ProductsModel> _recommendedProductList = [];
   List<ProductsModel> get recommendedProductList => _recommendedProductList;
@@ -15,20 +17,20 @@ class RecommendedProductController extends GetxController {
 
   Future<void> getRecommendedProductList() async {
     try {
-      Response response = await recommendedProductRepo.getRecommendedProductList();
+      Response response =
+          await recommendedProductRepo.getRecommendedProductList();
       if (response.statusCode == 200) {
-        //print("got products");
         _recommendedProductList = [];
         _recommendedProductList
-            .addAll(Product.fromJson(response.body).products as Iterable);
-        //print(_popularProductList);
+            .addAll(Product.fromJson(response.body).products!);
         _isLoaded = true;
         update();
       } else {
-        // Handle error if needed
+        Get.snackbar("Error",
+            "Could not get products recommended"); // Handle error if needed
       }
     } catch (error) {
-      // Handle exception if needed
+      print(error.toString());
     }
   }
 }

@@ -7,6 +7,7 @@ import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/icon_and_text_widget.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
+import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
@@ -58,8 +59,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   ),
                 )
               : CircularProgressIndicator(
-                color: AppColors.mainColor,
-              );
+                  color: AppColors.mainColor,
+                );
         }),
 
         // Dots
@@ -99,95 +100,107 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ),
 
         // List of food and images
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical, // Set scroll direction
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Row(
-              children: [
-                //image section
-                Container(
-                  margin: EdgeInsets.only(
-                    left: Dimensions.width10,
-                    right: Dimensions.width10,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10, top: 10),
-                    child: Container(
-                      height: Dimensions.listViewImgSize,
-                      width: Dimensions.listViewImgSize,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimensions.radius20),
-                        color: Colors.white38,
-                        image: DecorationImage(
-                          image: AssetImage("assets/food1.jpeg"),
-                          fit: BoxFit.cover,
+        GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
+          return recommendedProduct.isLoaded
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical, // Set scroll direction
+                  itemCount: recommendedProduct.recommendedProductList.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        //image section
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: Dimensions.width10,
+                            right: Dimensions.width10,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10, top: 10),
+                            child: Container(
+                              height: Dimensions.listViewImgSize,
+                              width: Dimensions.listViewImgSize,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius20),
+                                color: Colors.white38,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!,
+
+                                  ),
+                                  fit: BoxFit.cover,
+                                  )
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                // SizedBox(width: Dimensions.width10,),
-                //text container
-                Expanded(
-                  child: Container(
-                    height: Dimensions.listViewTextContSize,
-                    decoration: BoxDecoration(
-                        color: Colors.white12,
-                        border: Border.all(color: Colors.white38),
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(Dimensions.radius20),
-                            bottomRight: Radius.circular(Dimensions.radius20))),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          BigText(text: "Nutritious fruit meal in China"),
-                          SizedBox(
-                            height: Dimensions.height10,
-                          ),
-                          SmallText(
-                            text: "With Chinese characteristics",
-                            color: Colors.black26,
-                          ),
-                          SizedBox(
-                            height: Dimensions.height10,
-                          ),
-                          Row(
-                            children: [
-                              IconAndWidget(
-                                icon: Icons.circle_sharp,
-                                text: "Normal",
-                                iconColor: AppColors.iconColor1,
+                        // SizedBox(width: Dimensions.width10,),
+                        //text container
+                        Expanded(
+                          child: Container(
+                            height: Dimensions.listViewTextContSize,
+                            decoration: BoxDecoration(
+                                color: Colors.white12,
+                                border: Border.all(color: Colors.white38),
+                                borderRadius: BorderRadius.only(
+                                    topRight:
+                                        Radius.circular(Dimensions.radius20),
+                                    bottomRight:
+                                        Radius.circular(Dimensions.radius20))),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BigText(
+                                      text: recommendedProduct.recommendedProductList[index].name!),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  SmallText(
+                                    text: "With Chinese characteristics",
+                                    color: Colors.black26,
+                                  ),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      IconAndWidget(
+                                        icon: Icons.circle_sharp,
+                                        text: "Normal",
+                                        iconColor: AppColors.iconColor1,
+                                      ),
+                                      SizedBox(width: 10),
+                                      IconAndWidget(
+                                        icon: Icons.location_on,
+                                        text: "1.7 km",
+                                        iconColor: AppColors.mainColor,
+                                      ),
+                                      SizedBox(width: 10),
+                                      IconAndWidget(
+                                        icon: Icons.access_time_rounded,
+                                        text: "32 min",
+                                        iconColor: AppColors.iconColor2,
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
-                              SizedBox(width: 10),
-                              IconAndWidget(
-                                icon: Icons.location_on,
-                                text: "1.7 km",
-                                iconColor: AppColors.mainColor,
-                              ),
-                              SizedBox(width: 10),
-                              IconAndWidget(
-                                icon: Icons.access_time_rounded,
-                                text: "32 min",
-                                iconColor: AppColors.iconColor2,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  },
                 )
-              ],
-            );
-          },
-        ),
+              : CircularProgressIndicator(
+                color: AppColors.mainColor,
+              );
+        }),
       ],
     );
   }
@@ -229,7 +242,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    AppConstants.BASE_URL + "/uploads/" + popularProduct.img!),
+                    AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!),
               ),
             ),
           ),
