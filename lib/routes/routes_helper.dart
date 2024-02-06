@@ -7,26 +7,30 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 class RouteHelper {
   static const String initial = '/';
   static const String popularFood = '/popular-food';
+  static const String recommendedFood =
+      '/recommended-food'; // Define recommendedFood route
 
-  static String getPopularFood() => '$popularFood';
+  static String getPopularFood(int pageId) => '$popularFood?pageId=$pageId';
+  static String getInitial() => '$initial';
+  static String getRecommendedFood() => '$recommendedFood';
 
   static List<GetPage> routes = [
     GetPage(
-      name: "/",
+      name: initial,
       page: () => MainFoodPage(),
     ),
-
     GetPage(
-      name: "popular-food",
-      page: () => PopularFoodDetail(),
-      transition: Transition.fadeIn
+      name: popularFood,
+      page: () {
+        var pageId = Get.parameters['pageId'];
+        return PopularFoodDetail(pageId);
+      },
+      transition: Transition.fadeIn,
     ),
-
     GetPage(
-      name: "recommended-food",
+      name: recommendedFood, // Use recommendedFood constant here
       page: () => RecommendedFoodDetail(),
-      transition: Transition.fadeIn
+      transition: Transition.fadeIn,
     ),
-    
   ];
 }

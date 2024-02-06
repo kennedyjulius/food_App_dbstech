@@ -10,6 +10,7 @@ import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
 import 'package:food_app_part1/pages/food/popular_food_detail.dart';
+import 'package:food_app_part1/pages/food/recommended_food_detail.dart';
 import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -121,7 +122,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         //image section
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed(RouteHelper.)
+                            Get.to(RecommendedFoodDetail());
                           },
                           child: Container(
                             margin: EdgeInsets.only(
@@ -129,7 +130,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               right: Dimensions.width10,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10, top: 10),
+                              padding:
+                                  const EdgeInsets.only(bottom: 10, top: 10),
                               child: Container(
                                 height: Dimensions.listViewImgSize,
                                 width: Dimensions.listViewImgSize,
@@ -248,18 +250,23 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.only(
-                left: Dimensions.width10, right: Dimensions.width15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(AppConstants.BASE_URL +
-                    AppConstants.UPLOAD_URL +
-                    popularProduct.img!),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(RouteHelper.popularFood);
+            },
+            child: Container(
+              height: Dimensions.pageViewContainer,
+              margin: EdgeInsets.only(
+                  left: Dimensions.width10, right: Dimensions.width15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      popularProduct.img!),
+                ),
               ),
             ),
           ),

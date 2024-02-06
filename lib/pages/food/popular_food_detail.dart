@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_part1/controllers/popular_product_controller.dart';
+import 'package:get/get.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/dimensions.dart';
-import 'package:food_app_part1/Widgets/app_column.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/expandable_text_widget.dart';
-import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+
+  const PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
-            //background image
+            // Background Image
             Positioned(
               top: Dimensions.height20,
               left: Dimensions.width20,
@@ -27,14 +34,22 @@ class PopularFoodDetail extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () => Get.back(),
-                    child: AppIcon(icon: Icons.arrow_back_ios, iconColor: AppColors.mainColor,)),
+                    child: AppIcon(
+                      icon: Icons.arrow_back_ios,
+                      iconColor: AppColors.mainColor,
+                    ),
+                  ),
                   InkWell(
                     onTap: () => print("Cart on next page"),
-                    child: AppIcon(icon: Icons.shopping_cart_outlined, iconColor: AppColors.mainColor,)),
+                    child: AppIcon(
+                      icon: Icons.shopping_cart_outlined,
+                      iconColor: AppColors.mainColor,
+                    ),
+                  ),
                 ],
               ),
             ),
-            //icon widget
+            // Background Image Widget
             Positioned(
               left: 0,
               right: 0,
@@ -50,17 +65,14 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               ),
             ),
-            //introduction of food
+            // Introduction of Food
             Positioned(
               left: 0,
               right: 0,
               bottom: 0,
               top: 330,
               child: Container(
-                padding: EdgeInsets.only(
-                  left: Dimensions.width20,
-                  right: Dimensions.width20,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -72,71 +84,57 @@ class PopularFoodDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Center(child: AppColumn(text: "Biriani")),
+                      const BigText(text: product.name!),
                       SizedBox(height: Dimensions.height20),
-                      const Center(child: BigText(text: "Introduce")),
-                      //expandable text widget
+                      const BigText(text: "Introduce"),
                       const ExpandableTextWidget(
-                          text:
-                              "It seems like the error is related to the layout of your widgets. The specific issue is that a RenderFlex (a flex container, such as a Column or Row) is overflowing, causing the layout errors. This often happens when the contents of the flex container are too large to fit within the available space.It seems like the error is related to the layout of your widgets. The specific issue is that a RenderFlex (a flex container, such as a Column or Row) is overflowing, causing the layout errors. This often happens when the contents of the flex container are too large to fit within the available space.It seems like the error is related to the layout of your widgets. The specific issue is that a RenderFlex (a flex container, such as a Column or Row) is overflowing, causing the layout errors. This often happens when the contents of the flex container are too large to fit within the available space.It seems like the error is related to the layout of your widgets. The specific issue is that a RenderFlex (a flex container, such as a Column or Row) is overflowing, causing the layout errors. This often happens when the contents of the flex container are too large to fit within the available space."
-                              ),
+                        text: "Your expandable text goes here...",
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-            // expandable text widget
           ],
         ),
       ),
-      // bottom containeer
-      bottomNavigationBar: SingleChildScrollView(
-        child: Container(
-          height: Dimensions.bottomHeightBar,
-          padding: EdgeInsets.only(
-            top: Dimensions.height20,
-            bottom: Dimensions.height20,
-            left: Dimensions.width20,
-            right: Dimensions.width20,
+      // Bottom Container
+      bottomNavigationBar: Container(
+        height: Dimensions.bottomHeightBar,
+        padding: EdgeInsets.all(Dimensions.width20),
+        decoration: BoxDecoration(
+          color: AppColors.buttonBackgroundColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Dimensions.radius20),
+            topRight: Radius.circular(Dimensions.radius20),
           ),
-          decoration: BoxDecoration(
-            color: AppColors.buttonBackgroundColor,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Dimensions.radius20),
-              topRight: Radius.circular(Dimensions.radius20),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(
-                    top: Dimensions.height20,
-                    bottom: Dimensions.height20,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white),
-                child: Icon(Icons.favorite, color: AppColors.mainColor,)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.all(Dimensions.width20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: Colors.white,
               ),
-              Container(
-                padding: EdgeInsets.only(
-                    top: Dimensions.height20,
-                    bottom: Dimensions.height20,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor,
-                ),
-                child: BigText(
-                  text: "\$10 | Add to cart",
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
+              child: Icon(
+                Icons.favorite,
+                color: AppColors.mainColor,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(Dimensions.width20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: AppColors.mainColor,
+              ),
+              child: BigText(
+                text: "\$10 | Add to Cart",
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );
