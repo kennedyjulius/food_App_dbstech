@@ -9,6 +9,9 @@ import 'package:food_app_part1/Widgets/small_text.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
+import 'package:food_app_part1/pages/food/popular_food_detail.dart';
+import 'package:food_app_part1/routes/routes_helper.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class FoodPageBody extends StatefulWidget {
@@ -49,13 +52,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimensions.pageView,
-                  child: PageView.builder(
-                    controller: pageController,
-                    itemCount: popularProducts.popularProductList.length,
-                    itemBuilder: (context, position) {
-                      return _buildPageItem(position,
-                          popularProducts.popularProductList[position]);
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.popularFood);
                     },
+                    child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProducts.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPageItem(position,
+                            popularProducts.popularProductList[position]);
+                      },
+                    ),
                   ),
                 )
               : CircularProgressIndicator(
@@ -111,27 +119,34 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     return Row(
                       children: [
                         //image section
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: Dimensions.width10,
-                            right: Dimensions.width10,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 10, top: 10),
-                            child: Container(
-                              height: Dimensions.listViewImgSize,
-                              width: Dimensions.listViewImgSize,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.radius20),
-                                color: Colors.white38,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!,
-
-                                  ),
-                                  fit: BoxFit.cover,
-                                  )
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(RouteHelper.)
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              left: Dimensions.width10,
+                              right: Dimensions.width10,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10, top: 10),
+                              child: Container(
+                                height: Dimensions.listViewImgSize,
+                                width: Dimensions.listViewImgSize,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        Dimensions.radius20),
+                                    color: Colors.white38,
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        AppConstants.BASE_URL +
+                                            AppConstants.UPLOAD_URL +
+                                            recommendedProduct
+                                                .recommendedProductList[index]
+                                                .img!,
+                                      ),
+                                      fit: BoxFit.cover,
+                                    )),
                               ),
                             ),
                           ),
@@ -156,7 +171,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   BigText(
-                                      text: recommendedProduct.recommendedProductList[index].name!),
+                                      text: recommendedProduct
+                                          .recommendedProductList[index].name!),
                                   SizedBox(
                                     height: Dimensions.height10,
                                   ),
@@ -198,8 +214,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   },
                 )
               : CircularProgressIndicator(
-                color: AppColors.mainColor,
-              );
+                  color: AppColors.mainColor,
+                );
         }),
       ],
     );
@@ -241,8 +257,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!),
+                image: NetworkImage(AppConstants.BASE_URL +
+                    AppConstants.UPLOAD_URL +
+                    popularProduct.img!),
               ),
             ),
           ),

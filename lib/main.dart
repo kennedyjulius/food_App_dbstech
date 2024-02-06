@@ -6,6 +6,7 @@ import 'package:food_app_part1/data/api/api_client.dart';
 import 'package:food_app_part1/data/repository/popular_product_repo.dart';
 import 'package:food_app_part1/data/repository/recommended_product_repo.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
+import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'helpers/dependecies.dart' as dep;
@@ -49,7 +50,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
+      // initialRoute: RouteHelper.initial,
       home: MainFoodPage(),
+      getPages: RouteHelper.routes,
     );
   }
 }

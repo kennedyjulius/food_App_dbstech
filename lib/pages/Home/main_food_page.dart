@@ -35,8 +35,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   ),
                   Center( 
                     child: Container(
-                      width: Dimensions.width45,
-                      height: Dimensions.height45,
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor

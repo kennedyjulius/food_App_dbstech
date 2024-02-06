@@ -19,14 +19,18 @@ class PopularFoodDetail extends StatelessWidget {
           children: [
             //background image
             Positioned(
-              top: Dimensions.height45,
+              top: Dimensions.height20,
               left: Dimensions.width20,
               right: Dimensions.width20,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.arrow_back_ios),
-                  AppIcon(icon: Icons.shopping_cart_outlined),
+                  InkWell(
+                    onTap: () => Get.back(),
+                    child: AppIcon(icon: Icons.arrow_back_ios, iconColor: AppColors.mainColor,)),
+                  InkWell(
+                    onTap: () => print("Cart on next page"),
+                    child: AppIcon(icon: Icons.shopping_cart_outlined, iconColor: AppColors.mainColor,)),
                 ],
               ),
             ),
@@ -88,7 +92,7 @@ class PopularFoodDetail extends StatelessWidget {
       // bottom containeer
       bottomNavigationBar: SingleChildScrollView(
         child: Container(
-          height: 120,
+          height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(
             top: Dimensions.height20,
             bottom: Dimensions.height20,
