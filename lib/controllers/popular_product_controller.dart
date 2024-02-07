@@ -12,6 +12,8 @@ class PopularProductController extends GetxController {
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+  int _quantity = 0;
+  int get quantity => _quantity;
 
   Future<void> getPopularProductList() async {
     try {
@@ -30,5 +32,15 @@ class PopularProductController extends GetxController {
     } catch (error) {
       // Handle exception if needed
     }
+  }
+
+//another method
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
+      _quantity = _quantity + 1;
+    } else {
+      _quantity = _quantity - 1;
+    }
+    update();
   }
 }

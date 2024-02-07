@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_part1/Utils/app_constants.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:get/get.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
@@ -17,8 +18,18 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<PopularProductController>().popularProductList[pageId];
+    var popularProductController = Get.find<PopularProductController>();
+    var product = popularProductController.popularProductList?[pageId];
+
+    if (product == null) {
+      // Handle the case when the product is null
+      return Scaffold(
+        body: Center(
+          child: Text('Product not found'),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -59,7 +70,9 @@ class PopularFoodDetail extends StatelessWidget {
                 height: Dimensions.foodDetailImageHeight,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/food7.jpeg"),
+                    image: NetworkImage(AppConstants.BASE_URL +
+                        AppConstants.UPLOAD_URL +
+                        product.img!),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -84,11 +97,11 @@ class PopularFoodDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const BigText(text: product.name!),
+                      BigText(text: product.name!),
                       SizedBox(height: Dimensions.height20),
-                      const BigText(text: "Introduce"),
-                      const ExpandableTextWidget(
-                        text: "Your expandable text goes here...",
+                      BigText(text: "Introduce"),
+                      ExpandableTextWidget(
+                        text: product.description!,
                       ),
                     ],
                   ),
@@ -99,44 +112,69 @@ class PopularFoodDetail extends StatelessWidget {
         ),
       ),
       // Bottom Container
-      bottomNavigationBar: Container(
-        height: Dimensions.bottomHeightBar,
-        padding: EdgeInsets.all(Dimensions.width20),
-        decoration: BoxDecoration(
-          color: AppColors.buttonBackgroundColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Dimensions.radius20),
-            topRight: Radius.circular(Dimensions.radius20),
+      bottomNavigationBar:
+          GetBuilder<PopularProductController>(builder: (popularProduct) {
+        return Container(
+          height: Dimensions.bottomHeightBar,
+          padding: EdgeInsets.all(Dimensions.width20),
+          decoration: BoxDecoration(
+            color: AppColors.buttonBackgroundColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(Dimensions.radius20),
+              topRight: Radius.circular(Dimensions.radius20),
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.all(Dimensions.width20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                  padding: EdgeInsets.all(Dimensions.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            popularProduct.setQuantity(true);
+                          },
+                          icon: Icon(
+                            Icons.remove,
+                            color: AppColors.signColor,
+                          )),
+                      SizedBox(
+                        width: Dimensions.height10 / 2,
+                      ),
+                      BigText(text: popularProduct.quantity.toString()),
+                      SizedBox(
+                        width: Dimensions.width10 / 2,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            popularProduct.setQuantity(false);
+                          },
+                          icon: Icon(
+                            Icons.add,
+                            color: AppColors.signColor,
+                          ))
+                    ],
+                  )),
+              Container(
+                padding: EdgeInsets.all(Dimensions.width20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: AppColors.mainColor,
+                ),
+                child: BigText(
+                  text: "KShs ${product.price!} | Add to Cart",
+                  color: Colors.white,
+                ),
               ),
-              child: Icon(
-                Icons.favorite,
-                color: AppColors.mainColor,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(Dimensions.width20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: AppColors.mainColor,
-              ),
-              child: BigText(
-                text: "\$10 | Add to Cart",
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

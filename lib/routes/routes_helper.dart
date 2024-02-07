@@ -7,12 +7,12 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 class RouteHelper {
   static const String initial = '/';
   static const String popularFood = '/popular-food';
-  static const String recommendedFood =
-      '/recommended-food'; // Define recommendedFood route
+  static const String recommendedFood = '/recommended-food';
 
   static String getPopularFood(int pageId) => '$popularFood?pageId=$pageId';
   static String getInitial() => '$initial';
-  static String getRecommendedFood() => '$recommendedFood';
+  static String getRecommendedFood(int pageId) =>
+      '$recommendedFood?pageId=$pageId'; // Add pageId parameter
 
   static List<GetPage> routes = [
     GetPage(
@@ -22,14 +22,17 @@ class RouteHelper {
     GetPage(
       name: popularFood,
       page: () {
-        var pageId = Get.parameters['pageId'];
-        return PopularFoodDetail(pageId);
+        var pageId = int.tryParse(Get.parameters['pageId'] ?? '');
+        return PopularFoodDetail(pageId: pageId ?? 0);
       },
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: recommendedFood, // Use recommendedFood constant here
-      page: () => RecommendedFoodDetail(),
+      name: recommendedFood,
+      page: () {
+        var pageId = int.tryParse(Get.parameters['pageId'] ?? '');
+        return RecommendedFoodDetail(pageId: pageId ?? 0);
+      },
       transition: Transition.fadeIn,
     ),
   ];
