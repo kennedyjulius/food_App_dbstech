@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/data/repository/popular_product_repo.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
 import 'package:get/get.dart';
@@ -37,10 +39,35 @@ class PopularProductController extends GetxController {
 //another method
   void setQuantity(bool isIncrement) {
     if (isIncrement) {
-      _quantity = _quantity + 1;
+      _quantity = checkQuantity(_quantity + 1);
     } else {
-      _quantity = _quantity - 1;
+      _quantity = checkQuantity(_quantity - 1);
     }
     update();
+  }
+
+  checkQuantity(int quantity) {
+    if (quantity < 0) {
+      Get.snackbar(
+        "Item Count",
+        "You cant reduce more !",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+      return 0;
+    } else if (quantity > 20) {
+      Get.snackbar(
+        "Item Count",
+        "You cant add more !",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+      return 20;
+    } else
+      quantity;
+  }
+
+  void initData() {
+    _quantity = 0;
   }
 }
