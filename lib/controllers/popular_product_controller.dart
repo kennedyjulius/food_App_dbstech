@@ -16,6 +16,8 @@ class PopularProductController extends GetxController {
   bool get isLoaded => _isLoaded;
   int _quantity = 0;
   int get quantity => _quantity;
+  int _inCartItems = 0;
+  int get InCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList() async {
     try {
@@ -67,7 +69,10 @@ class PopularProductController extends GetxController {
       quantity;
   }
 
-  void initData() {
+  void initProduct() {
     _quantity = 0;
+    _inCartItems = 0;
+    //if exist
+    //get from storage _inCartItems = 3
   }
 }
