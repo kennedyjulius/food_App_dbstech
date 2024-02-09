@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
+import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:get/get.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
@@ -7,6 +8,7 @@ import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/expandable_text_widget.dart';
+import 'package:food_app_part1/modal/products_modal.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
@@ -20,11 +22,12 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var popularProductController = Get.find<PopularProductController>();
 
-    Get.find<PopularProductController>().initProduct();
-    var product = popularProductController.popularProductList?[pageId];
+    var product = popularProductController.popularProductList[pageId];
+
+    popularProductController.initProduct(product, Get.find<CartController>());
 
     if (product == null) {
-      // Handle the case when the product is null
+      Get.snackbar("Cart Message", "Empty Cart");
       return Scaffold(
         body: Center(
           child: Text('Product not found'),
@@ -162,15 +165,20 @@ class PopularFoodDetail extends StatelessWidget {
                           ))
                     ],
                   )),
-              Container(
-                padding: EdgeInsets.all(Dimensions.width20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor,
-                ),
-                child: BigText(
-                  text: "KShs ${product.price!} | Add to Cart",
-                  color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  popularProduct.addItem(product);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(Dimensions.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
+                  ),
+                  child: BigText(
+                    text: "KShs ${product.price!} | Add to Cart",
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],
