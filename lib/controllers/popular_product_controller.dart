@@ -52,7 +52,7 @@ class PopularProductController extends GetxController {
   }
 
   checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
         "Item Count",
         "You cant reduce more !",
@@ -60,7 +60,7 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
       );
       return 0;
-    } else if (quantity > 20) {
+    } else if (_inCartItems + quantity > 20) {
       Get.snackbar(
         "Item Count",
         "You cant add more !",
@@ -79,21 +79,33 @@ class PopularProductController extends GetxController {
     var exist = false;
     exist = _cart.existInCart(product);
     //if exist
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
     //get from storage _inCartItems = 3
+    print("the quantity in the cart is " + _inCartItems.toString());
   }
 
   void addItem(ProductsModel product) {
     if (_quantity > 0) {
       _cart.addItem(product, _quantity);
+
+      _quantity = 0;
+
+      _inCartItems = _cart.getQuantity(product);
+
       _cart.items.forEach((key, value) {
         print("The id is " +
             value.id.toString() +
             "the quantity " +
             value.quantity.toString());
       });
-    } else {
-      Get.snackbar(
-          "Item Count", "You should at least add an item in the cart list");
+
+      update();
     }
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }

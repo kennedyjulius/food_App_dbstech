@@ -138,8 +138,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       SizedBox(width: Dimensions.width10 / 2),
                       IconButton(
                         onPressed: () {
-                          Get.snackbar(
-                              "Successful clicked", "Add Button clicked");
+                          
                         },
                         icon: Icon(
                           Icons.add,

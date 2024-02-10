@@ -55,13 +55,26 @@ class PopularFoodDetail extends StatelessWidget {
                       iconColor: AppColors.mainColor,
                     ),
                   ),
-                  InkWell(
-                    onTap: () => print("Cart on next page"),
-                    child: AppIcon(
-                      icon: Icons.shopping_cart_outlined,
-                      iconColor: AppColors.mainColor,
-                    ),
-                  ),
+                  GetBuilder<PopularProductController>(builder: (controller) {
+                    return Stack(
+                      children: [
+                        AppIcon(
+                          icon: Icons.shopping_cart_outlined,
+                          iconColor: AppColors.mainColor,
+                        ),
+                        Container(),
+                        Get.find<PopularProductController>().totalItems>=1?Positioned(
+                          right: 3,
+                          top: 3,
+                          child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),
+                          size: 12,
+                          color: AppColors.mainColor,
+                          ),
+                        ):
+                        Container()
+                      ],
+                    );
+                  }),
                 ],
               ),
             ),
@@ -142,7 +155,7 @@ class PopularFoodDetail extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () {
-                            popularProduct.setQuantity(true);
+                            popularProduct.setQuantity(false);
                           },
                           icon: Icon(
                             Icons.remove,
@@ -151,7 +164,7 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         width: Dimensions.height10 / 2,
                       ),
-                      BigText(text: popularProduct.quantity.toString()),
+                      BigText(text: popularProduct.InCartItems.toString()),
                       SizedBox(
                         width: Dimensions.width10 / 2,
                       ),
