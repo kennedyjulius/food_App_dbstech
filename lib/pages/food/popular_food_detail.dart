@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
+import 'package:food_app_part1/pages/Home/main_food_page.dart';
 import 'package:get/get.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/expandable_text_widget.dart';
-import 'package:food_app_part1/modal/products_modal.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
@@ -20,11 +20,11 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var popularProductController = Get.find<PopularProductController>();
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
 
-    var product = popularProductController.popularProductList[pageId];
-
-    popularProductController.initProduct(product, Get.find<CartController>());
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
 
     if (product == null) {
       Get.snackbar("Cart Message", "Empty Cart");
@@ -49,7 +49,7 @@ class PopularFoodDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: () => Get.back(),
+                    onTap: () => Get.to(MainFoodPage()),
                     child: AppIcon(
                       icon: Icons.arrow_back_ios,
                       iconColor: AppColors.mainColor,
@@ -63,15 +63,19 @@ class PopularFoodDetail extends StatelessWidget {
                           iconColor: AppColors.mainColor,
                         ),
                         Container(),
-                        Get.find<PopularProductController>().totalItems>=1?Positioned(
-                          right: 3,
-                          top: 3,
-                          child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),
-                          size: 12,
-                          color: AppColors.mainColor,
-                          ),
-                        ):
-                        Container()
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 3,
+                                top: 3,
+                                child: BigText(
+                                  text: Get.find<PopularProductController>()
+                                      .totalItems
+                                      .toString(),
+                                  size: 12,
+                                  color: AppColors.mainColor,
+                                ),
+                              )
+                            : Container()
                       ],
                     );
                   }),
