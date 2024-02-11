@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
+import 'package:food_app_part1/pages/cart/cart_page.dart';
 import 'package:get/get.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/dimensions.dart';
@@ -58,11 +61,26 @@ class PopularFoodDetail extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return Stack(
                       children: [
+                        //starts the app icons
                         AppIcon(
                           icon: Icons.shopping_cart_outlined,
                           iconColor: AppColors.mainColor,
                         ),
-                        Container(),
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(CartPage());
+                            },
+                            child: AppIcon(
+                              icon: Icons.circle,
+                              size: 20,
+                              iconColor: Colors.transparent,
+                              backgroundColor: AppColors.mainColor,
+                            ),
+                          ),
+                        ),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
                                 right: 3,
@@ -150,38 +168,39 @@ class PopularFoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                  padding: EdgeInsets.all(Dimensions.width20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            popularProduct.setQuantity(false);
-                          },
-                          icon: Icon(
-                            Icons.remove,
-                            color: AppColors.signColor,
-                          )),
-                      SizedBox(
-                        width: Dimensions.height10 / 2,
-                      ),
-                      BigText(text: popularProduct.InCartItems.toString()),
-                      SizedBox(
-                        width: Dimensions.width10 / 2,
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            popularProduct.setQuantity(false);
-                          },
-                          icon: Icon(
-                            Icons.add,
-                            color: AppColors.signColor,
-                          ))
-                    ],
-                  )),
+                padding: EdgeInsets.all(Dimensions.width20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          popularProduct.setQuantity(false);
+                        },
+                        icon: Icon(
+                          Icons.remove,
+                          color: AppColors.signColor,
+                        )),
+                    SizedBox(
+                      width: Dimensions.height10 / 2,
+                    ),
+                    BigText(text: popularProduct.InCartItems.toString()),
+                    SizedBox(
+                      width: Dimensions.width10 / 2,
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          popularProduct.setQuantity(false);
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: AppColors.signColor,
+                        ))
+                  ],
+                ),
+              ),
               GestureDetector(
                 onTap: () {
                   popularProduct.addItem(product);

@@ -37,7 +37,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                   },
                   child: AppIcon(icon: Icons.clear),
                 ),
-                AppIcon(icon: Icons.shopping_cart),
+                GestureDetector(
+                  onTap: () {
+                    
+                  },
+                  child: AppIcon(icon: Icons.shopping_cart)),
               ],
             ),
             backgroundColor: AppColors.yellowColor,
