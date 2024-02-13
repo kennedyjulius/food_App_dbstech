@@ -12,38 +12,28 @@ class CartController extends GetxController {
   Map<int, CartModel> get items => _items;
 
   void addItem(ProductsModel product, int quantity) {
-    var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
-      _items.update(product.id!, (value) {
-        totalQuantity = value.quantity! + quantity;
-
+      _items.update(product.id!, (existingItem) {
         return CartModel(
-          id: value.id,
-          name: value.name,
-          price: value.price,
-          img: value.img,
-          quantity: value.quantity! + quantity,
+          id: existingItem.id,
+          name: existingItem.name,
+          price: existingItem.price,
+          img: existingItem.img,
+          quantity: existingItem.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
         );
       });
-
-      if (totalQuantity <= 0) {
-        _items.remove(product.id);
-      }
     } else {
-      _items.putIfAbsent(product.id!, () {
-        Get.snackbar("Cart Adding", "Adding Item to the cart id ${product.id} quantity");
-        return CartModel(
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          img: product.img,
-          quantity: quantity,
-          isExist: true,
-          time: DateTime.now().toString(),
-        );
-      });
+      _items[product.id!] = CartModel(
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        img: product.img,
+        quantity: quantity,
+        isExist: true,
+        time: DateTime.now().toString(),
+      );
     }
   }
 
@@ -52,28 +42,14 @@ class CartController extends GetxController {
   }
 
   int getQuantity(ProductsModel product) {
-    var quantity = 0;
-    if (_items.containsKey(product.id!)) {
-      _items.forEach((key, value) {
-        if (key == product.id) {
-          quantity = value.quantity!;
-        }
-      });
-    }
-    return quantity;
+    return _items.containsKey(product.id) ? _items[product.id]!.quantity! : 0;
   }
 
   int get totalItems {
-    var totalQuantity = 0;
-    _items.forEach((key, value) {
-      totalQuantity += value.quantity!;
-    });
-    return totalQuantity;
+    return _items.values.fold(0, (total, item) => total + item.quantity!);
   }
 
-  List<Set<CartModel>> get getItems {
-    return _items.entries.map((e) => {
-      e.value
-    }).toList();
+  List<CartModel> get getItems {
+    return _items.values.toList();
   }
 }

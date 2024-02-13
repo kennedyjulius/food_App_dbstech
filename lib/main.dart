@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
+import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/data/api/api_client.dart';
@@ -20,18 +21,22 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
-  get apiclient => Apiclient(appBaseUrl: AppConstants.BASE_URL, token: AppConstants.TOKEN);
+
+  get apiclient =>
+      Apiclient(appBaseUrl: AppConstants.BASE_URL, token: AppConstants.TOKEN);
 
   @override
   Widget build(BuildContext context) {
     // Initialize controllers only if they are not already initialized
     if (!Get.isRegistered<PopularProductController>()) {
-      Get.put(PopularProductController(popularProductRepo: PopularProductRepo(apiclient: apiclient)));
+      Get.put(PopularProductController(
+          popularProductRepo: PopularProductRepo(apiclient: apiclient)));
     }
 
     if (!Get.isRegistered<RecommendedProductController>()) {
-      Get.put(RecommendedProductController(recommendedProductRepo: RecommendedProductRepo(apiclient: apiclient)));
+      Get.put(RecommendedProductController(
+          recommendedProductRepo:
+              RecommendedProductRepo(apiclient: apiclient)));
     }
 
     // Ensure controllers are fully initialized before moving forward
@@ -40,6 +45,7 @@ class MyApp extends StatelessWidget {
       // Retrieve data using the controllers
       Get.find<PopularProductController>().getPopularProductList();
       Get.find<RecommendedProductController>().getRecommendedProductList();
+      Get.find<CartController>();
     } else {
       // Handle the case where controllers are not initialized
       print("Error: Controllers not initialized properly.");

@@ -11,7 +11,7 @@ class RouteHelper {
 
   static String getPopularFood(int pageId) => '$popularFood?pageId=$pageId';
   static String getInitial() => '$initial';
-  static String getRecommendedFood(int pageId) =>
+  static String getRecommendedFood(int pageId, String s) =>
       '$recommendedFood?pageId=$pageId'; // Add pageId parameter
 
   static List<GetPage> routes = [
