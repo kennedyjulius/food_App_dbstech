@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      //home: RecommendedFoodDetail(pageId: 1,),
+      // home: RecommendedFoodDetail(pageId: pageId, page: page)
       initialRoute: RouteHelper.initial,
       home: MainFoodPage(),
       getPages: RouteHelper.routes,

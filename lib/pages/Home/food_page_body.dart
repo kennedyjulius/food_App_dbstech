@@ -117,14 +117,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   scrollDirection: Axis.vertical, // Set scroll direction
                   itemCount: recommendedProduct.recommendedProductList.length,
                   itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        //image section
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(RouteHelper.recommendedFood);
-                          },
-                          child: Container(
+                    return InkWell(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.recommendedFood);
+                      },
+                      child: Row(
+                        children: [
+                          //image section
+                          Container(
                             margin: EdgeInsets.only(
                               left: Dimensions.width10,
                               right: Dimensions.width10,
@@ -153,66 +153,69 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               ),
                             ),
                           ),
-                        ),
-                        // SizedBox(width: Dimensions.width10,),
-                        //text container
-                        Expanded(
-                          child: Container(
-                            height: Dimensions.listViewTextContSize,
-                            decoration: BoxDecoration(
-                                color: Colors.white12,
-                                border: Border.all(color: Colors.white38),
-                                borderRadius: BorderRadius.only(
-                                    topRight:
-                                        Radius.circular(Dimensions.radius20),
-                                    bottomRight:
-                                        Radius.circular(Dimensions.radius20))),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  BigText(
-                                      text: recommendedProduct
-                                          .recommendedProductList[index].name!),
-                                  SizedBox(
-                                    height: Dimensions.height10,
-                                  ),
-                                  SmallText(
-                                    text: "With Chinese characteristics",
-                                    color: Colors.black26,
-                                  ),
-                                  SizedBox(
-                                    height: Dimensions.height10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      IconAndTextWidget(
-                                        icon: Icons.circle_sharp,
-                                        text: "Normal",
-                                        iconColor: AppColors.iconColor1,
-                                      ),
-                                      SizedBox(width: 10),
-                                      IconAndTextWidget(
-                                        icon: Icons.location_on,
-                                        text: "1.7 km",
-                                        iconColor: AppColors.mainColor,
-                                      ),
-                                      SizedBox(width: 10),
-                                      IconAndTextWidget(
-                                        icon: Icons.access_time_rounded,
-                                        text: "32 min",
-                                        iconColor: AppColors.iconColor2,
-                                      ),
-                                    ],
-                                  )
-                                ],
+                          // SizedBox(width: Dimensions.width10,),
+                          //text container
+                          Expanded(
+                            child: Container(
+                              height: Dimensions.listViewTextContSize,
+                              decoration: BoxDecoration(
+                                  color: Colors.white12,
+                                  border: Border.all(color: Colors.white38),
+                                  borderRadius: BorderRadius.only(
+                                      topRight:
+                                          Radius.circular(Dimensions.radius20),
+                                      bottomRight:
+                                          Radius.circular(Dimensions.radius20
+                                          ),
+                                          ),
+                                          ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    BigText(
+                                        text: recommendedProduct
+                                            .recommendedProductList[index].name!),
+                                    SizedBox(
+                                      height: Dimensions.height10,
+                                    ),
+                                    SmallText(
+                                      text: "With Chinese characteristics",
+                                      color: Colors.black26,
+                                    ),
+                                    SizedBox(
+                                      height: Dimensions.height10,
+                                    ),
+                                    Row(
+                                      children: [
+                                        IconAndTextWidget(
+                                          icon: Icons.circle_sharp,
+                                          text: "Normal",
+                                          iconColor: AppColors.iconColor1,
+                                        ),
+                                        SizedBox(width: 10),
+                                        IconAndTextWidget(
+                                          icon: Icons.location_on,
+                                          text: "1.7 km",
+                                          iconColor: AppColors.mainColor,
+                                        ),
+                                        SizedBox(width: 10),
+                                        IconAndTextWidget(
+                                          icon: Icons.access_time_rounded,
+                                          text: "32 min",
+                                          iconColor: AppColors.iconColor2,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     );
                   },
                 )
