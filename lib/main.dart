@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: RecommendedFoodDetail(pageId: 1,),
-      // initialRoute: RouteHelper.initial,
-      // home: MainFoodPage(),
-      // getPages: RouteHelper.routes,
+      //home: RecommendedFoodDetail(pageId: 1,),
+      initialRoute: RouteHelper.initial,
+      home: MainFoodPage(),
+      getPages: RouteHelper.routes,
     );
   }
 }

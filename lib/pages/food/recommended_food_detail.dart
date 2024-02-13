@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
 
-  const RecommendedFoodDetail({Key? key, required this.pageId})
+  const RecommendedFoodDetail({Key? key, required this.pageId, required String page})
       : super(key: key);
 
   @override

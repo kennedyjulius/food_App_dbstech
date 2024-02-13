@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
 
-class IconAndWidget extends StatelessWidget {
+class IconAndTextWidget extends StatelessWidget {
   final IconData icon;
   final String text;
   //final Color color;
   final Color iconColor;
-  const IconAndWidget({super.key, 
+  const IconAndTextWidget({super.key, 
   required this.icon, 
   required this.text, 
   //required this.color, 

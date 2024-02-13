@@ -188,19 +188,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                   ),
                                   Row(
                                     children: [
-                                      IconAndWidget(
+                                      IconAndTextWidget(
                                         icon: Icons.circle_sharp,
                                         text: "Normal",
                                         iconColor: AppColors.iconColor1,
                                       ),
                                       SizedBox(width: 10),
-                                      IconAndWidget(
+                                      IconAndTextWidget(
                                         icon: Icons.location_on,
                                         text: "1.7 km",
                                         iconColor: AppColors.mainColor,
                                       ),
                                       SizedBox(width: 10),
-                                      IconAndWidget(
+                                      IconAndTextWidget(
                                         icon: Icons.access_time_rounded,
                                         text: "32 min",
                                         iconColor: AppColors.iconColor2,
@@ -226,7 +226,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   // Transform API for Flutter
 
-  Widget _buildPageItem(int index, ProductsModel popularProduct) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     var currTrans = _height / 2;
 
@@ -330,19 +330,19 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     SizedBox(height: Dimensions.height20),
                     Row(
                       children: [
-                        IconAndWidget(
+                        IconAndTextWidget(
                           icon: Icons.circle_sharp,
                           text: "Normal",
                           iconColor: AppColors.iconColor1,
                         ),
                         SizedBox(width: 10),
-                        IconAndWidget(
+                        IconAndTextWidget(
                           icon: Icons.location_on,
                           text: "1.7 km",
                           iconColor: AppColors.mainColor,
                         ),
                         SizedBox(width: 10),
-                        IconAndWidget(
+                        IconAndTextWidget(
                           icon: Icons.access_time_rounded,
                           text: "32 min",
                           iconColor: AppColors.iconColor2,
