@@ -71,7 +71,7 @@ class PopularFoodDetail extends StatelessWidget {
                           top: 0,
                           child: GestureDetector(
                             onTap: () {
-                              //Get.to(CartPage());
+                              Get.to(CartPage());
                             },
                             child: AppIcon(
                               icon: Icons.circle,

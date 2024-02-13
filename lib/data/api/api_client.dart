@@ -19,66 +19,78 @@ class Apiclient extends GetConnect implements GetxController {
       'Authorization': 'Bearer $token',
     };
   }
-
-  Future<Response> getData(String uri) async {
-    try {
-      Response response = await get(uri);
+  //method to get data from the server
+ Future<Response> getData(String uri,) async {
+    try{
+      Response response=await get(uri);
       return response;
-    } catch (e) {
-      return Response(statusCode: 1, statusText: e.toString());
+    }catch(e){
+      return Response(statusCode: 1,statusText: e.toString());
     }
   }
 
+  Future<Response> postData(String uri, dynamic body)async{
+    print(body.toString());
+    try{
+     Response response= await post(uri, body, headers: _mainHeaders);
+     print(response.toString());
+     return response;
+    }catch(e){
+      print(e.toString());
+      return Response(statusCode: 1,statusText: e.toString());
+    }
+  }
+  
   @override
   Disposer addListener(GetStateUpdate listener) {
     // TODO: implement addListener
     throw UnimplementedError();
   }
-
+  
   @override
   Disposer addListenerId(Object? key, GetStateUpdate listener) {
     // TODO: implement addListenerId
     throw UnimplementedError();
   }
-
+  
   @override
   void disposeId(Object id) {
     // TODO: implement disposeId
   }
-
+  
   @override
   // TODO: implement hasListeners
   bool get hasListeners => throw UnimplementedError();
-
+  
   @override
   // TODO: implement listeners
   int get listeners => throw UnimplementedError();
-
+  
   @override
   void notifyChildrens() {
     // TODO: implement notifyChildrens
   }
-
+  
   @override
   void refresh() {
     // TODO: implement refresh
   }
-
+  
   @override
   void refreshGroup(Object id) {
     // TODO: implement refreshGroup
   }
-
+  
   @override
   void removeListener(VoidCallback listener) {
     // TODO: implement removeListener
   }
-
+  
   @override
   void removeListenerId(Object id, VoidCallback listener) {
     // TODO: implement removeListenerId
   }
-
+  
   @override
   void update([List<Object>? ids, bool condition = true]) {
     // TODO: implement update

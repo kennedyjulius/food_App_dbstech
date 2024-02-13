@@ -9,8 +9,6 @@ import 'package:food_app_part1/Widgets/small_text.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/modal/products_modal.dart';
-import 'package:food_app_part1/pages/food/popular_food_detail.dart';
-import 'package:food_app_part1/pages/food/recommended_food_detail.dart';
 import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -70,9 +68,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
-        }),
+        }
+        ),
 
-        // Dots
+        // Dots indicator
         GetBuilder<PopularProductController>(builder: (popularProducts) {
           return DotsIndicator(
             dotsCount: popularProducts.popularProductList.isEmpty
@@ -84,7 +83,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               activeColor: AppColors.mainColor,
             ),
           );
-        }),
+        }
+        ),
 
         // Popular Text
         SizedBox(height: Dimensions.height20),
@@ -148,7 +148,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                                 .img!,
                                       ),
                                       fit: BoxFit.cover,
-                                    )),
+                                    ),
+                                    ),
                               ),
                             ),
                           ),

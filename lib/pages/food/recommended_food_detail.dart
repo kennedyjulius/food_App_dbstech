@@ -76,109 +76,111 @@ class RecommendedFoodDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar:
-          GetBuilder<PopularProductController>(builder: (controller) {
-        return Container(
-          height: 120,
-          padding: EdgeInsets.all(Dimensions.width20),
-          decoration: BoxDecoration(
-            color: AppColors.buttonBackgroundColor,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Dimensions.radius20),
-              topRight: Radius.circular(Dimensions.radius20),
-            ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      controller.setQuantity(false);
-                    },
-                    child: AppIcon(
-                      iconSize: Dimensions.iconSize24,
-                      icon: Icons.remove,
-                      backgroundColor: AppColors.mainColor,
-                      iconColor: Colors.white,
-                    ),
-                  ),
-                  BigText(
-                    text: "Kshs ${product.price!} X ${controller.InCartItems} ",
-                    color: AppColors.mainBlackColor,
-                    size: Dimensions.font26,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      controller.setQuantity(true);
-                    },
-                    child: AppIcon(
-                      iconSize: Dimensions.iconSize24,
-                      icon: Icons.add,
-                      backgroundColor: AppColors.mainColor,
-                      iconColor: Colors.white,
-                    ),
-                  ),
-                ],
+          SingleChildScrollView(
+            child: GetBuilder<PopularProductController>(builder: (controller) {
+                    return Container(
+            height: 120,
+            padding: EdgeInsets.all(Dimensions.width20),
+            decoration: BoxDecoration(
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimensions.radius20),
+                topRight: Radius.circular(Dimensions.radius20),
               ),
-              SizedBox(height: Dimensions.height20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(Dimensions.width20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: Colors.white,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        controller.setQuantity(false);
+                      },
+                      child: AppIcon(
+                        iconSize: Dimensions.iconSize24,
+                        icon: Icons.remove,
+                        backgroundColor: AppColors.mainColor,
+                        iconColor: Colors.white,
+                      ),
                     ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.snackbar(
-                                "Successful clicked", "remove button clicked");
-                          },
-                          icon: Icon(
-                            Icons.remove,
-                            color: AppColors.signColor,
-                          ),
-                        ),
-                        SizedBox(width: Dimensions.width10 / 2),
-                        BigText(text: "0"),
-                        SizedBox(width: Dimensions.width10 / 2),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.add,
-                            color: AppColors.signColor,
-                          ),
-                        ),
-                      ],
+                    BigText(
+                      text: "Kshs ${product.price!} X ${controller.InCartItems} ",
+                      color: AppColors.mainBlackColor,
+                      size: Dimensions.font26,
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      controller.addItem(product);
-                    },
-                    child: Container(
+                    GestureDetector(
+                      onTap: () {
+                        controller.setQuantity(true);
+                      },
+                      child: AppIcon(
+                        iconSize: Dimensions.iconSize24,
+                        icon: Icons.add,
+                        backgroundColor: AppColors.mainColor,
+                        iconColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: Dimensions.height20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
                       padding: EdgeInsets.all(Dimensions.width20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.mainColor,
-                      ),
-                      child: BigText(
-                        text: "Kshs ${product.price!} | Add to cart",
                         color: Colors.white,
                       ),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Get.snackbar(
+                                  "Successful clicked", "remove button clicked");
+                            },
+                            icon: Icon(
+                              Icons.remove,
+                              color: AppColors.signColor,
+                            ),
+                          ),
+                          SizedBox(width: Dimensions.width10 / 2),
+                          BigText(text: "0"),
+                          SizedBox(width: Dimensions.width10 / 2),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.add,
+                              color: AppColors.signColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    GestureDetector(
+                      onTap: () {
+                        controller.addItem(product);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(Dimensions.width20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                          color: AppColors.mainColor,
+                        ),
+                        child: BigText(
+                          text: "Kshs ${product.price!} | Add to cart",
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+                    );
+                  }),
           ),
-        );
-      }),
     );
   }
 }
