@@ -13,7 +13,8 @@ import 'package:get/get.dart';
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
 
-  const RecommendedFoodDetail({Key? key, required this.pageId, required String page})
+  const RecommendedFoodDetail(
+      {Key? key, required this.pageId, required String page})
       : super(key: key);
 
   @override
@@ -33,18 +34,16 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RouteHelper.recommendedFood);
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(icon: Icons.clear),
                 ),
                 GestureDetector(
                   onTap: () {
-                    
+                    Get.toNamed(RouteHelper.cartPage);
                   },
-                  child: AppIcon(
-                    icon: Icons.shopping_cart
-                    ),
-                  ),
+                  child: AppIcon(icon: Icons.shopping_cart),
+                ),
               ],
             ),
             backgroundColor: AppColors.yellowColor,
@@ -78,10 +77,9 @@ class RecommendedFoodDetail extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar:
-          SingleChildScrollView(
-            child: GetBuilder<PopularProductController>(builder: (controller) {
-                    return Container(
+      bottomNavigationBar: SingleChildScrollView(
+        child: GetBuilder<PopularProductController>(builder: (controller) {
+          return Container(
             height: 120,
             padding: EdgeInsets.all(Dimensions.width20),
             decoration: BoxDecoration(
@@ -109,7 +107,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                       ),
                     ),
                     BigText(
-                      text: "Kshs ${product.price!} X ${controller.InCartItems} ",
+                      text:
+                          "Kshs ${product.price!} X ${controller.InCartItems} ",
                       color: AppColors.mainBlackColor,
                       size: Dimensions.font26,
                     ),
@@ -133,15 +132,16 @@ class RecommendedFoodDetail extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(Dimensions.width20),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius20),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius20),
                         color: Colors.white,
                       ),
                       child: Row(
                         children: [
                           IconButton(
                             onPressed: () {
-                              Get.snackbar(
-                                  "Successful clicked", "remove button clicked");
+                              Get.snackbar("Successful clicked",
+                                  "remove button clicked");
                             },
                             icon: Icon(
                               Icons.remove,
@@ -168,7 +168,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(Dimensions.width20),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
                           color: AppColors.mainColor,
                         ),
                         child: BigText(
@@ -181,9 +182,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
               ],
             ),
-                    );
-                  }),
-          ),
+          );
+        }),
+      ),
     );
   }
 }
