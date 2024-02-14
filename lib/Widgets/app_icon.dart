@@ -16,7 +16,7 @@ class AppIcon extends StatelessWidget {
     this.backgroundColor, // Remove default value
     this.iconColor, // Remove default value
     this.size = 40, 
-    this.iconSize= 16,
+    this.iconSize= 16, required double iconsize,
   }) : super(key: key);
 
   @override

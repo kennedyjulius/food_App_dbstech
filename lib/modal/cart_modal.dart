@@ -1,45 +1,55 @@
-import 'dart:convert';
+
+
+import 'package:food_app_part1/modal/products_modal.dart';
 
 class CartModel {
   int? id;
   String? name;
-  int? quantity;
   int? price;
-  bool? isExist;
   String? img;
+  int? quantity;
+  bool? isExist;
   String? time;
+  ProductModel? product;
+
+
 
   CartModel({
     this.id,
     this.name,
-    this.quantity,
     this.price,
-    this.isExist,
     this.img,
+    this.quantity,
+    this.isExist,
     this.time,
+    this.product,
   });
 
-  factory CartModel.fromJson(Map<String, dynamic> json) {
-    return CartModel(
-      id: json['id'],
-      name: json['name'],
-      time: json['time'],
-      price: json['price'],
-      quantity: json['quantity'],
-      img: json['img'],
-      isExist: json['isExist'] ?? false,
-    );
-  }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'time': time,
-      'price': price,
-      'quantity': quantity,
-      'img': img,
-      'isExist': isExist,
+  CartModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    price = json['price'];
+    img = json['img'];
+    quantity=json['quantity'];
+    isExist=json['isExist'];
+    time=json['time'];
+    product=ProductModel.fromJson(json['product']);
+
+
+  }
+  Map<String, dynamic> toJson(){
+    return{
+    "id":this.id,
+    "name":this.name,
+    "price":this.price,
+    "img":this.img,
+    "quantity":this.quantity,
+    "isExist":this.isExist,
+    "time":this.time,
+      "product":this.product!.toJson()
+      
     };
+
   }
 }

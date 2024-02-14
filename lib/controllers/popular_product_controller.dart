@@ -7,7 +7,8 @@ import 'package:food_app_part1/modal/products_modal.dart';
 import 'package:get/get.dart';
 
 class PopularProductController extends GetxController {
-  final PopularProductRepo popularProductRepo;
+  final PopularProductRepo
+  popularProductRepo;
 
   PopularProductController({required this.popularProductRepo});
 
