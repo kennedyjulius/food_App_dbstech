@@ -53,7 +53,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                 background: Image.network(
               AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
               fit: BoxFit.cover,
-            )),
+            ),
+            ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(0),
               child: Container(
@@ -65,7 +66,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   ),
                 ),
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: 5, bottom: 10),
+                padding: EdgeInsets.only(top: Dimensions.height10, bottom: Dimensions.height10),
               ),
             ),
           ),

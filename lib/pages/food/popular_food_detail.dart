@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
+import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/app_column.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/expandable_text_widget.dart';
@@ -13,8 +16,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../widgets/big_text.dart';
-import '../../widgets/icon_and_text_widget.dart';
-import '../../widgets/small_text.dart';
+
 
 
 class PopularFoodDetail extends StatelessWidget {
@@ -45,7 +47,8 @@ class PopularFoodDetail extends StatelessWidget {
                     )
                 ),
 
-              )),
+              ),
+              ),
           Positioned(
               top: 45,
               left: 20,
@@ -66,7 +69,8 @@ class PopularFoodDetail extends StatelessWidget {
                     return GestureDetector(
                       onTap: (){
                         if(controller.totalItems>=1)
-                        Get.toNamed(RouteHelper.getCartPage());
+                        Get.toNamed(RouteHelper.getCartPage()
+                        );
                       },
                       child: Stack(
                         children: [
@@ -98,7 +102,7 @@ class PopularFoodDetail extends StatelessWidget {
               bottom: 0 ,
               top: 320,
               child: Container(
-                  padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  padding: EdgeInsets.only(left: Dimensions.width20,right: Dimensions.width20,top: Dimensions.height20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20),
@@ -110,34 +114,35 @@ class PopularFoodDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppColumn(text: product.name!),
-                      SizedBox(height: 20,),
+                      SizedBox(height: Dimensions.height20,),
                       BigText(text: 'Brief summary'),
-                      SizedBox(height: 20,),
+                      SizedBox(height: Dimensions.height20,),
                       Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text:product.description!)))
                     ],
-                  )
+                  ),
 
-              ))
+              ),
+              ),
         ],
       ),
       bottomNavigationBar: GetBuilder<PopularProductController>(builder: (popularProduct){
         return Container(
           height: 120,
-          padding: EdgeInsets.only(top: 30, bottom: 30,left: 20,right: 20),
+          padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
           decoration: BoxDecoration(
               color: AppColors.buttonBackgroundColor,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40)
+                  topLeft: Radius.circular(Dimensions.radius30),
+                  topRight: Radius.circular(Dimensions.radius30)
               )
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
+                padding: EdgeInsets.only(top: Dimensions.height10,bottom: Dimensions.height10,left: Dimensions.width10,right: Dimensions.width10),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: Colors.white
                 ),
                 child: Row(
@@ -146,15 +151,18 @@ class PopularFoodDetail extends StatelessWidget {
                       onTap: (){
                         popularProduct.setQuantity(false);
                       },
-                      child: Icon(Icons.remove,color: AppColors.signColor,)),
-                    SizedBox(width: 5,),
+                      child: Icon(Icons.remove,color: AppColors.signColor,
+                      ),
+                      ),
+                    SizedBox(width: Dimensions.width10,),
                     BigText(text: popularProduct.InCartItems.toString()),
-                    SizedBox(width: 5,),
+                    SizedBox(width: Dimensions.width10,),
                     GestureDetector(
                         onTap: (){
                           popularProduct.setQuantity(true);
                         },
-                        child: Icon(Icons.add,color: AppColors.signColor,)),
+                        child: Icon(Icons.add,color: AppColors.signColor,)
+                        ),
 
                   ],
                 ),
@@ -164,7 +172,7 @@ class PopularFoodDetail extends StatelessWidget {
                   popularProduct.addItem(product);
                },
                 child: Container(
-                  padding: EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
+                  padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
 
                       child: BigText(text: 'Ksh ${product.price!} | Add to cart',color: Colors.white,),
                   decoration: BoxDecoration(
@@ -176,7 +184,8 @@ class PopularFoodDetail extends StatelessWidget {
             ],
           ),
         );
-      }),
+      }
+      ),
     );
   }
 }

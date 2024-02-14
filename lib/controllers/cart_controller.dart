@@ -13,13 +13,13 @@ class CartController extends GetxController {
 
   void addItem(ProductModel product, int quantity) {
     if (_items.containsKey(product.id!)) {
-      _items.update(product.id!, (existingItem) {
+      _items.update(product.id!, (Value) {
         return CartModel(
-          id: existingItem.id,
-          name: existingItem.name,
-          price: existingItem.price,
-          img: existingItem.img,
-          quantity: existingItem.quantity! + quantity,
+          id: Value.id,
+          name: Value.name,
+          price: Value.price,
+          img: Value.img,
+          quantity: Value.quantity! + quantity,
           isExist: true,
           time: DateTime.now().toString(),
         );

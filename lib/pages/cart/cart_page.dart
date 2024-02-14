@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
@@ -7,6 +9,7 @@ import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
+import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
@@ -33,7 +36,7 @@ class CartPage extends StatelessWidget {
                 SizedBox(width: Dimensions.width20 * 5),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => MainFoodPage());
+                    Get.toNamed(RouteHelper.initial);
                   },
                   child: AppIcon(
                     icon: Icons.home_mini_outlined,
@@ -62,8 +65,8 @@ class CartPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(Dimensions.radius20),
+                  topLeft: Radius.circular(Dimensions.radius20),
                 ),
               ),
               child: MediaQuery.removePadding(
@@ -75,17 +78,19 @@ class CartPage extends StatelessWidget {
                       itemCount: cartController.getItems.length,
                       itemBuilder: (_, index) {
                         return Container(
-                          height: 100,
+                          height: 120,
                           width: double.maxFinite,
                           color: Colors.blue,
                           child: Row(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(bottom: Dimensions.height10),
+                                margin: EdgeInsets.only(
+                                    bottom: Dimensions.height10),
                                 width: Dimensions.width20 * 5,
                                 height: Dimensions.height20 * 5,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.radius20),
                                   color: Colors.white,
                                   image: DecorationImage(
                                     image: NetworkImage(AppConstants.BASE_URL +
@@ -99,40 +104,59 @@ class CartPage extends StatelessWidget {
                               Expanded(
                                 child: Container(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       BigText(
-                                        text: cartController.getItems[index].name!,
+                                        text: cartController
+                                            .getItems[index].name!,
                                         color: Colors.black54,
                                       ),
                                       SmallText(text: "Spicy"),
                                       Row(
                                         children: [
                                           BigText(
-                                            text: cartController.getItems[index].price.toString(),
+                                            text: cartController
+                                                .getItems[index].price
+                                                .toString(),
                                             color: Colors.redAccent,
                                           ),
                                           Container(
-                                            padding: EdgeInsets.all(Dimensions.width20),
+                                            padding: EdgeInsets.all(
+                                                Dimensions.width20),
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(Dimensions.radius20),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      Dimensions.radius20),
                                               color: Colors.white,
                                             ),
                                             child: Row(
                                               children: [
                                                 IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Get.toNamed(
+                                                        RouteHelper.initial);
+                                                  },
                                                   icon: Icon(
                                                     Icons.remove,
                                                     color: AppColors.signColor,
                                                   ),
                                                 ),
-                                                SizedBox(width: Dimensions.height10 / 2),
+                                                SizedBox(
+                                                    width: Dimensions.height10 /
+                                                        2),
                                                 BigText(text: "0"),
-                                                SizedBox(width: Dimensions.width10 / 2),
+                                                SizedBox(
+                                                    width:
+                                                        Dimensions.width10 / 2),
                                                 IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Get.snackbar(
+                                                        "Navigation to add",
+                                                        "added to the navigation");
+                                                  },
                                                   icon: Icon(
                                                     Icons.add,
                                                     color: AppColors.signColor,
