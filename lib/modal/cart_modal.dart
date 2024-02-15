@@ -1,6 +1,5 @@
-
-
 import 'package:food_app_part1/modal/products_modal.dart';
+
 
 class CartModel {
   int? id;
