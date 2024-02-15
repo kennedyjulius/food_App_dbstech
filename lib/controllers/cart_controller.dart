@@ -11,6 +11,8 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
+  get totalAmount => null;
+
   void addItem(ProductModel product, int quantity) {
     if (_items.containsKey(product.id!)) {
       _items.update(product.id!, (Value) {

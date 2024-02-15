@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +157,7 @@ class PopularFoodDetail extends StatelessWidget {
                       ),
                       ),
                     SizedBox(width: Dimensions.width10,),
-                    BigText(text: popularProduct.InCartItems.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(width: Dimensions.width10,),
                     GestureDetector(
                         onTap: (){
