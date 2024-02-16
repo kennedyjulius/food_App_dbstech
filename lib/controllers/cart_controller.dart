@@ -85,6 +85,7 @@ class CartController extends GetxController {
     });
     return totalQuantity;
   }
+  //get items with a getter functon
 
   List<CartModel> get getItems {
     return _items.entries.map((e) {

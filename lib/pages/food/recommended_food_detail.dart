@@ -65,6 +65,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                             icon: Icons.shopping_cart_outlined,
                             iconsize: Dimensions.iconSize24,
                           ),
+                          //second child showing the  the circle whetre the total number is placed above the cart icon
                           Get.find<PopularProductController>().totalItems >= 1
                               ? Positioned(
                                   right: 0,
@@ -78,6 +79,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                                   ),
                                 )
                               : Container(),
+
+                              //second child showing the total items number
                           Get.find<PopularProductController>().totalItems >= 1
                               ? Positioned(
                                   right: 3,
@@ -111,8 +114,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)
+                          topLeft: Radius.circular(Dimensions.radius20),
+                          topRight: Radius.circular(Dimensions.radius20)
                           ),
                           
                           ),
@@ -139,7 +142,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                   margin: EdgeInsets.only(left: 20, right: 20),
                 )
               ],
-            ))
+            ),
+            ),
           ],
         ),
         bottomNavigationBar:
@@ -149,14 +153,15 @@ class RecommendedFoodDetail extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.only(
-                  left: 50,
-                  right: 50,
+                  left: Dimensions.width45,
+                  right: Dimensions.width45,
                   top: 10,
                   bottom: 10,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    //remove quantity button
                     GestureDetector(
                       onTap: () {
                         controller.setQuantity(false);
@@ -167,11 +172,15 @@ class RecommendedFoodDetail extends StatelessWidget {
                           backgroundColor: AppColors.mainColor,
                           icon: Icons.remove),
                     ),
+
+                    //price button
                     BigText(
                       text: 'Ksh ${product.price}X ${controller.inCartItems}',
                       color: AppColors.mainBlackColor,
                       size: 26,
                     ),
+
+                    //second button add button
                     GestureDetector(
                       onTap: () {
                         controller.setQuantity(true);
@@ -185,6 +194,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   ],
                 ),
               ),
+              //the lower part of the bottom navigation
               Container(
                 height: 120,
                 padding:
@@ -192,8 +202,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColors.buttonBackgroundColor,
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40))),
+                        topLeft: Radius.circular(Dimensions.radius20*2),
+                        topRight: Radius.circular(Dimensions.radius20*2))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

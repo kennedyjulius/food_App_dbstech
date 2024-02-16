@@ -26,16 +26,16 @@ class RouteHelper{
     GetPage(name: initial, page: ()=>MainFoodPage()),
     GetPage(name: popularFood, page: (){
       var pageId=Get.parameters['pageId'];
-      //var page= Get.parameters["page"];
-      return PopularFoodDetail(pageId:int.parse(pageId!), page: pageId);
+      var page= Get.parameters["page"];
+      return PopularFoodDetail(pageId:int.parse(pageId!), page: page!);
     },
       transition: Transition.fadeIn
     ),
 
     GetPage(name: recommendedFood, page: (){
       var pageId=Get.parameters['pageId'];
-      //var page= Get.parameters["page"];
-      return RecommendedFoodDetail(pageId:int.parse(pageId!), page:pageId);
+      var page= Get.parameters["page"];
+      return RecommendedFoodDetail(pageId:int.parse(pageId!), page:page!);
     },
         transition: Transition.fadeIn
     ),
