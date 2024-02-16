@@ -1,3 +1,4 @@
+import 'package:food_app_part1/pages/Home/home_page.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
 import 'package:food_app_part1/pages/cart/cart_page.dart';
 import 'package:food_app_part1/pages/food/popular_food_detail.dart';
@@ -23,7 +24,7 @@ class RouteHelper{
 
   static List<GetPage> routes=[
     //GetPage(name: splashPage, page: ()=>SplashScreen()),
-    GetPage(name: initial, page: ()=>MainFoodPage()),
+    GetPage(name: initial, page: ()=>HomePage()),
     GetPage(name: popularFood, page: (){
       var pageId=Get.parameters['pageId'];
       var page= Get.parameters["page"];

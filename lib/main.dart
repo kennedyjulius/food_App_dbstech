@@ -6,6 +6,7 @@ import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/data/api/api_client.dart';
 import 'package:food_app_part1/data/repository/popular_product_repo.dart';
 import 'package:food_app_part1/data/repository/recommended_product_repo.dart';
+import 'package:food_app_part1/pages/Home/home_page.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
 import 'package:food_app_part1/pages/cart/cart_page.dart';
 import 'package:food_app_part1/pages/food/recommended_food_detail.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: RecommendedFoodDetail(pageId: pageId, page: page)
       initialRoute: RouteHelper.initial,
-      home: MainFoodPage(),
+      home: HomePage(),
       getPages: RouteHelper.routes,
     );
   }
