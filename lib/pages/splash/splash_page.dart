@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           ScaleTransition(
             scale: animation,
-            child: Center(child: Image.asset("assets/logo1.png")),
+            child: Center(child: Image.asset("assets/logo1.png", width: Dimensions.splashImg,)),
           ),
 
           //second annimation
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Center(
               child: Image.asset(
                 "assets/logo2.png",
-                width: MediaQuery.of(context).size.width-20,
+                width: Dimensions.splashImg
               ),
             ),
           )

@@ -40,5 +40,8 @@ class Dimensions {
   static double listViewTextContSize = screenWidth / 3.9;
 
   //bottom height
-   static double bottomHeightBar = screenWidth / 3.3;
+  static double bottomHeightBar = screenWidth / 3.3;
+
+  //splash screen dimensions
+  static double splashImg = screenHeight / 3.38;
 }
