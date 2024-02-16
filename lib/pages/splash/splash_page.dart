@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:food_app_part1/routes/routes_helper.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,17 +20,35 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 3))
+          ..forward();
     // ignore: unnecessary_new
     animation = new CurvedAnimation(parent: controller, curve: Curves.linear);
+
+    Timer(Duration(seconds: 4),() => Get.offNamed(RouteHelper.initial));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/")
+          ScaleTransition(
+            scale: animation,
+            child: Center(child: Image.asset("assets/logo1.png")),
+          ),
+
+          //second annimation
+          ScaleTransition(
+            scale: animation,
+            child: Center(
+              child: Image.asset(
+                "assets/logo2.png",
+                width: MediaQuery.of(context).size.width-20,
+              ),
+            ),
+          )
         ],
       ),
     );
