@@ -68,25 +68,25 @@ class _HomePageState extends State<HomePage> {
             PersistentBottomNavBarItem(
                 icon: Icon(CupertinoIcons.home),
                 title: ("Home"),
-                activeColorPrimary: CupertinoColors.activeBlue,
+                activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
                 icon: Icon(CupertinoIcons.archivebox),
                 title: ("Archive"),
-                activeColorPrimary: CupertinoColors.activeBlue,
+                activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
                 icon: Icon(CupertinoIcons.shopping_cart),
                 title: ("Cart"),
-                activeColorPrimary: CupertinoColors.activeBlue,
+                activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
                 icon: Icon(CupertinoIcons.person_2),
                 title: ("Me"),
-                activeColorPrimary: CupertinoColors.activeBlue,
+                activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
         ];
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
           curve: Curves.ease,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
+        navBarStyle: NavBarStyle.style5, // Choose the nav bar style with this property.
     );
   }
   }
