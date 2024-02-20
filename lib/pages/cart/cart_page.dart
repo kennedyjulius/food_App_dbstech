@@ -310,6 +310,7 @@ class CartPage extends StatelessWidget {
                           textCancel: "No",
                           textConfirm: "Yes",
                           onConfirm: () {
+                            cartController.addToHistory();
                             Navigator.pop(context);
                             Get.snackbar("Push Notification alert",
                                 "wait for a push notification ");

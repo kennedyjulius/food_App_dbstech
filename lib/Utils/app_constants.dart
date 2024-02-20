@@ -15,6 +15,6 @@ class AppConstants{
   static const String TOKEN="DBtoken";
   // static const String PHONE="";
   // static const String PASSWORD="";
-  // static const String CART_LIST= "cart-list";
-  // static const String CART_HISTORY_LIST = "cart-history-list";
+   static const String CART_LIST= "cart-list";
+  static const String CART_HISTORY_LIST = "cart-history-list";
 }
