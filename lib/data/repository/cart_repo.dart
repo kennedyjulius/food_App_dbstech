@@ -10,6 +10,13 @@ class CartRepo {
   CartRepo({required this.sharedPreferences});
 
   //convert objects to string simply because sharedpreferences only accepts a list of strings
+  // Assuming this is where your cart history is stored
+  List<CartModel> cartHistoryList = [];
+
+
+  List<CartModel> getCartHistoryList() {
+    return cartHistoryList;
+  }
 
   List<String> cart = [];
   var time = DateTime.now().toString();
