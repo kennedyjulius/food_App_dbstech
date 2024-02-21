@@ -12,12 +12,14 @@ class CartRepo {
   //convert objects to string simply because sharedpreferences only accepts a list of strings
 
   List<String> cart = [];
+  var time = DateTime.now().toString();
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
     sharedPreferences.remove(AppConstants.CART_LIST);
     cart = [];
     cartList.forEach((element) {
+      element.time = time;
       return cart.add(jsonEncode(element));
     });
 
