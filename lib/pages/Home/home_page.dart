@@ -4,6 +4,7 @@ import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/pages/Home/main_food_page.dart';
 import 'package:food_app_part1/pages/account_page.dart';
 import 'package:food_app_part1/pages/acrchive_page.dart';
+import 'package:food_app_part1/pages/cart/cart_history.dart';
 import 'package:food_app_part1/pages/cart/cart_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         return [
           MainFoodPage(),
           ArchivePage(),
-           CartPage(),
+           CartHistory(),
            AccountPage(),
 
            
