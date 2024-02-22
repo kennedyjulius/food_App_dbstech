@@ -38,7 +38,9 @@ class _CartHistoryState extends State<CartHistory> {
       body: Column(
         children: [
           Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const BigText(
                   text: "Cart History",
@@ -63,40 +65,45 @@ class _CartHistoryState extends State<CartHistory> {
               child: MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
-                child: ListView.builder(
-                  itemCount: itemsPerOrder.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        BigText(text: "05/02/2021"),
-                        SizedBox(height: Dimensions.height10/2,),
-                        Row(
-                          children: List.generate(itemsPerOrder[index], (index) {
-                            if (listCounter < getCartHistoryList.length) {
-                              listCounter++;
-                            }
-                            return Container(
-                              height: 80,
-                              width: 80,
-                              margin: const EdgeInsets.all(5),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(Dimensions.radius15/2),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                      image: NetworkImage(AppConstants.BASE_URL +
-                                          AppConstants.UPLOAD_URL +
-                                          getCartHistoryList[listCounter - 1]
-                                              .img!
-                                              )
-                                              )
-                                              ),
-                            );
-                          }),
+                child: ListView(
+                  children: [
+                    for(int i=0; i<itemsPerOrder.length; i++)
+                      Container(
+                        margin: EdgeInsets.only(bottom: Dimensions.height20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            BigText(
+                            text: "05/02/2021"),
+                            SizedBox(height: Dimensions.height10/2,),
+                            Row(
+                              children: 
+                              List.generate(itemsPerOrder[i], (index) {
+                                if (listCounter < getCartHistoryList.length) {
+                                  listCounter++;
+                                }
+                                return Container(
+                                  height: 120,
+                                  margin: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(Dimensions.radius15/2),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        AppConstants.BASE_URL +
+                                            AppConstants.UPLOAD_URL +
+                                            getCartHistoryList[listCounter - 1].img!,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ],
                         ),
-                      ],
-                    );
-                  },
+                      ),
+                  ],
                 ),
               ),
             ),
