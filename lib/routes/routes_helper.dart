@@ -1,13 +1,14 @@
+// ignore_for_file: unused_import
+
 import 'package:food_app_part1/pages/Home/home_page.dart';
-import 'package:food_app_part1/pages/Home/main_food_page.dart';
 import 'package:food_app_part1/pages/cart/cart_page.dart';
 import 'package:food_app_part1/pages/food/popular_food_detail.dart';
 import 'package:food_app_part1/pages/food/recommended_food_detail.dart';
 import 'package:food_app_part1/pages/splash/splash_page.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
+
+
 
 class RouteHelper{
   static const String splashPage= "/splash-page";

@@ -206,9 +206,9 @@ class CartPage extends StatelessWidget {
                                                                             index]
                                                                         .product!,
                                                                     1);
-                                                                //print(
-                                                                    //'being tapped');
-                                                                // popularProduct.setQuantity(true);
+                                                                print(
+                                                                    'being tapped');
+                                                                //popularProduct.setQuantity(true);
                                                               },
                                                               child: Icon(
                                                                 Icons.add,
@@ -228,7 +228,7 @@ class CartPage extends StatelessWidget {
                                     );
                                   });
                             }))))
-                : Text("NO items on Cart History");
+                : Text("Your cart is empty");
           })
         ],
       ),
@@ -258,7 +258,7 @@ class CartPage extends StatelessWidget {
                           ),
                           BigText(
                               text: "\$ " +
-                                  cartController!.totalAmount.toString()),
+                                  cartController.totalAmount.toString()),
                           SizedBox(
                             width: 5,
                           ),
@@ -267,9 +267,19 @@ class CartPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        popularProduct.addItem(product);
-                        //print('tapped');
-                        cartController!.addToHistory();
+                        var cartController = Get.find<CartController>();
+                        if (cartController.getItems.isNotEmpty) {
+                          var product = cartController.getItems.first
+                              .product; // Assuming each item has a 'product' field
+                          if (product != null) {
+                            var popularProduct =
+                                Get.find<PopularProductController>();
+                            popularProduct.addItem(product);
+                            //print('tapped');
+                            cartController
+                                .addToHistory(); // Assuming this method exists and is what you intended to call
+                          }
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.only(
@@ -285,7 +295,7 @@ class CartPage extends StatelessWidget {
                     )
                   ],
                 )
-              : Container(),
+              : Container(child: Center(child: Text("Your Cart Is Empty"))),
         );
       }),
     );
