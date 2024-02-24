@@ -102,7 +102,7 @@ class CartController extends GetxController {
   }
 
   List<CartModel> getCartData() {
-    //setCart= cartRepo.getCartList();
+    setCart= cartRepo.getCartLIst();
     Get.snackbar("title", "items are being added to the list");
     return storageItems;
   }
@@ -135,7 +135,7 @@ class CartController extends GetxController {
   }
 
   void addToCartList() {
-    //cartRepo.addToCartList(getItems);
+    cartRepo.addToCartList(getItems);
     update();
   }
 }

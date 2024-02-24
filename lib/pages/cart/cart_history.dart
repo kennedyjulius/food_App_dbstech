@@ -13,7 +13,7 @@ import 'package:food_app_part1/routes/routes_helper.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
+import 'package:intl/intl.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class CartHistory extends StatelessWidget {
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
                   iconColor: AppColors.mainColor,
-                  backgroundColor: AppColors.yellowColor, 
+                  backgroundColor: AppColors.yellowColor,
                   iconsize: Dimensions.iconSize24,
                 ),
               ],
@@ -83,8 +83,7 @@ class CartHistory extends StatelessWidget {
           ),
           GetBuilder<CartController>(builder: (_cartController) {
             return _cartController.getCartHistoryList().length > 0
-                ? 
-                Expanded(
+                ? Expanded(
                     child: Container(
                         margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                         child: MediaQuery.removePadding(
@@ -179,7 +178,11 @@ class CartHistory extends StatelessWidget {
                                                             () => CartModel.fromJson(
                                                                 jsonDecode(jsonEncode(
                                                                     getCartHistoryList[
-                                                                        j]))));
+                                                                        j]
+                                                                        ),
+                                                                        ),
+                                                                        ),
+                                                                        );
                                                       }
                                                     }
                                                     Get.find<CartController>()
@@ -191,7 +194,7 @@ class CartHistory extends StatelessWidget {
                                                   },
                                                   child: Container(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 10,
                                                         vertical: 5),
                                                     decoration: BoxDecoration(
@@ -224,14 +227,14 @@ class CartHistory extends StatelessWidget {
                 : SizedBox(
                     height: MediaQuery.of(context).size.height / 1.5,
                     child: const Center(
-                      // child: NoDataPage(
-                      //   text: "You didn't buy anything",
-                      //   imgPath: "lib/assets/empty_box.png",
-                      // ),
-                      // child: Container(
-                      //   child: Text("You didn't buy anything"),
-                      // ),
-                    ));
+                        // child: NoDataPage(
+                        //   text: "You didn't buy anything",
+                        //   imgPath: "lib/assets/empty_box.png",
+                        // ),
+                        // child: Container(
+                        //   child: Text("You didn't buy anything"),
+                        // ),
+                        ));
           })
         ],
       ),
