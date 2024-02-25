@@ -15,7 +15,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
-
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
 
@@ -76,7 +75,7 @@ class CartHistory extends StatelessWidget {
                 AppIcon(
                   icon: Icons.shopping_cart_outlined,
                   iconColor: AppColors.mainColor,
-                  backgroundColor: AppColors.yellowColor, 
+                  backgroundColor: AppColors.yellowColor,
                   iconsize: Dimensions.iconSize24,
                 ),
               ],
@@ -191,7 +190,7 @@ class CartHistory extends StatelessWidget {
                                                   },
                                                   child: Container(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 10,
                                                         vertical: 5),
                                                     decoration: BoxDecoration(
@@ -224,9 +223,8 @@ class CartHistory extends StatelessWidget {
                 : SizedBox(
                     height: MediaQuery.of(context).size.height / 1.5,
                     child: const Center(
-                      child: Text("You have not bought anything")
-                    ),
-                    );
+                        child: Text("You have not bought anything")),
+                  );
           })
         ],
       ),

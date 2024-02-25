@@ -268,18 +268,20 @@ class CartPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         var cartController = Get.find<CartController>();
-                        if (cartController.getItems.isNotEmpty) {
-                          var product = cartController.getItems.first
-                              .product; // Assuming each item has a 'product' field
-                          if (product != null) {
-                            var popularProduct =
-                                Get.find<PopularProductController>();
-                            popularProduct.addItem(product);
-                            //print('tapped');
-                            cartController
-                                .addToHistory(); // Assuming this method exists and is what you intended to call
-                          }
-                        }
+                        // if (cartController.getItems.isNotEmpty) {
+                        //   var product = cartController.getItems.first
+                        //       .product; // Assuming each item has a 'product' field
+                        //   if (product != null) {
+                        //     var popularProduct =
+                        //         Get.find<PopularProductController>();
+                        //     popularProduct.addItem(product);
+                        //     //print('tapped');
+                        //     cartController
+                        //         .addToHistory(); // Assuming this method exists and is what you intended to call
+                        //   }
+                        // }
+                        print("Tapped");
+                        cartController.addToHistory();
                       },
                       child: Container(
                         padding: EdgeInsets.only(
