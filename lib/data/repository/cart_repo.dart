@@ -13,8 +13,8 @@ class CartRepo {
   // Assuming this is where your cart history is stored
   List<CartModel> cartHistoryList = [];
 
-
   List<CartModel> getCartHistoryList() {
+    print(cartHistoryList.length);
     return cartHistoryList;
   }
 
