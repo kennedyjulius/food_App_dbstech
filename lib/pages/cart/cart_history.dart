@@ -20,6 +20,8 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //finding the dependecy cart controller from the cart controller
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
 
@@ -81,8 +83,8 @@ class CartHistory extends StatelessWidget {
               ],
             ),
           ),
-          GetBuilder<CartController>(builder: (_cartController) {
-            return _cartController.getCartHistoryList().length > 0
+          GetBuilder<CartController>(builder: (cartController) {
+            return cartController.getCartHistoryList().isNotEmpty
                 ? Expanded(
                     child: Container(
                         margin: EdgeInsets.only(top: 20, left: 20, right: 20),

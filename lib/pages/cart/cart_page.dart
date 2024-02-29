@@ -27,29 +27,35 @@ class CartPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(
-                    icon: Icons.arrow_back_ios,
-                    iconColor: Colors.white,
-                    backgroundColor: AppColors.mainColor,
-                    iconsize: 24,
-                  ),
-                  SizedBox(width: 100),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
-                    },
+                  Expanded(
                     child: AppIcon(
-                      icon: Icons.home_outlined,
+                      icon: Icons.arrow_back_ios,
                       iconColor: Colors.white,
                       backgroundColor: AppColors.mainColor,
                       iconsize: 24,
                     ),
                   ),
-                  AppIcon(
-                    icon: Icons.shopping_cart,
-                    iconColor: Colors.white,
-                    backgroundColor: AppColors.mainColor,
-                    iconsize: 24,
+                  SizedBox(width: 100),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getInitial());
+                      },
+                      child: AppIcon(
+                        icon: Icons.home_outlined,
+                        iconColor: Colors.white,
+                        backgroundColor: AppColors.mainColor,
+                        iconsize: 24,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: AppIcon(
+                      icon: Icons.shopping_cart,
+                      iconColor: Colors.white,
+                      backgroundColor: AppColors.mainColor,
+                      iconsize: 24,
+                    ),
                   )
                 ],
               )),
@@ -195,7 +201,8 @@ class CartPage extends StatelessWidget {
                                                               text: _cartList[
                                                                       index]
                                                                   .quantity
-                                                                  .toString()), //popularProduct.inCartItems.toString()),
+                                                                  .toString()), 
+                                                                  // popularProduct.inCartItems.toString()),
                                                           SizedBox(
                                                             width: 5,
                                                           ),
@@ -280,7 +287,7 @@ class CartPage extends StatelessWidget {
                         //         .addToHistory(); // Assuming this method exists and is what you intended to call
                         //   }
                         // }
-                        print("Tapped");
+                        //print("Tapped");
                         cartController.addToHistory();
                       },
                       child: Container(
