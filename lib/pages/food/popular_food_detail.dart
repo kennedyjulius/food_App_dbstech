@@ -7,6 +7,7 @@ import 'package:food_app_part1/Utils/app_constants.dart';
 import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/app_column.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
+import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/expandable_text_widget.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
@@ -15,7 +16,6 @@ import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   int pageId;

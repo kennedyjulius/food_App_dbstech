@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_part1/Utils/Colors.dart';
 import 'package:food_app_part1/Utils/app_constants.dart';
+import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
@@ -10,7 +11,6 @@ import 'package:food_app_part1/routes/routes_helper.dart';
 
 import 'package:get/get.dart';
 
-import '../../widgets/app_icon.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);

@@ -12,3 +12,20 @@ class AppColors {
   static final Color mainBlackColor = const Color(0xFF332d2d);
   static final Color yellowColor = const Color(0xFFffd379);
 }
+
+List<BoxShadow> CustomboxShadow = [
+  BoxShadow(
+    blurRadius: 10,
+    color: Colors.white10,
+    spreadRadius: 4,
+    offset: Offset(-1, -1),
+    blurStyle: BlurStyle.outer,
+  ),
+  BoxShadow(
+    blurRadius: 10,
+    color: Colors.white10,
+    spreadRadius: 4,
+    offset: Offset(2, 5),
+    blurStyle: BlurStyle.outer,
+  ),
+];
