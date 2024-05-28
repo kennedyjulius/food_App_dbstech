@@ -7,6 +7,7 @@ import 'package:food_app_part1/Utils/dimensions.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
+import 'package:food_app_part1/base/no_data_page.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/modal/cart_modal.dart';
 import 'package:food_app_part1/routes/routes_helper.dart';
@@ -139,7 +140,11 @@ class CartHistory extends StatelessWidget {
                                                                               1]
                                                                       .img!))),
                                                     )
-                                                  : Container();
+                                                  : Container(
+                                                    height: MediaQuery.of(context).size.height/1.5,
+                                                    child: NoDataPage(text: "You Didn't Buy anything", 
+                                                    imgPath: "assets/empty_box.png",),
+                                                  );
                                             }),
                                           ),
                                           Container(

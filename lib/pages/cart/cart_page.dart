@@ -4,6 +4,7 @@ import 'package:food_app_part1/Utils/app_constants.dart';
 import 'package:food_app_part1/Widgets/app_icon.dart';
 import 'package:food_app_part1/Widgets/big_text.dart';
 import 'package:food_app_part1/Widgets/small_text.dart';
+import 'package:food_app_part1/base/no_data_page.dart';
 import 'package:food_app_part1/controllers/cart_controller.dart';
 import 'package:food_app_part1/controllers/popular_product_controller.dart';
 import 'package:food_app_part1/controllers/recommended_product_controller.dart';
@@ -235,7 +236,7 @@ class CartPage extends StatelessWidget {
                                     );
                                   });
                             }))))
-                : Text("Your cart is empty");
+                : NoDataPage(text: "Your Cart is empty, kindly add some items from home page");
           })
         ],
       ),
@@ -258,7 +259,8 @@ class CartPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
-                      child: Row(
+                      child: cartController.getItems.length>0 ?
+                      Row(
                         children: [
                           SizedBox(
                             width: 5,
@@ -270,10 +272,11 @@ class CartPage extends StatelessWidget {
                             width: 5,
                           ),
                         ],
-                      ),
+                      ):Container()
                     ),
                     GestureDetector(
                       onTap: () {
+                        
                         var cartController = Get.find<CartController>();
                         // if (cartController.getItems.isNotEmpty) {
                         //   var product = cartController.getItems.first
