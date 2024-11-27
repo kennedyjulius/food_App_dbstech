@@ -15,6 +15,8 @@ import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+  
+  get popularProduct => popularProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class CartPage extends StatelessWidget {
                       iconsize: 24,
                     ),
                   ),
-                  SizedBox(width: 100),
+                  const SizedBox(width: 100),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -60,26 +62,26 @@ class CartPage extends StatelessWidget {
                   )
                 ],
               )),
-          GetBuilder<CartController>(builder: (_cartController) {
-            return _cartController.getItems.length > 0
+          GetBuilder<CartController>(builder: (cartController) {
+            return cartController.getItems.length > 0
                 ? Positioned(
                     top: 100,
                     left: 20,
                     right: 20,
                     bottom: 0,
                     child: Container(
-                        margin: EdgeInsets.only(top: 15),
+                        margin: const EdgeInsets.only(top: 15),
                         //color: Colors.red,
                         child: MediaQuery.removePadding(
                             context: context,
                             removeTop: true,
                             child: GetBuilder<CartController>(
                                 builder: (cartController) {
-                              var _cartList = cartController.getItems;
+                              var cartList = cartController.getItems;
                               return ListView.builder(
-                                  itemCount: _cartList.length,
+                                  itemCount: cartList.length,
                                   itemBuilder: (Context, index) {
-                                    return Container(
+                                    return SizedBox(
                                       width: double.maxFinite,
                                       height: 100,
                                       child: Row(
@@ -89,7 +91,7 @@ class CartPage extends StatelessWidget {
                                               var popularIndex = Get.find<
                                                       PopularProductController>()
                                                   .popularProductList
-                                                  .indexOf(_cartList[index]
+                                                  .indexOf(cartList[index]
                                                       .product!);
                                               if (popularIndex >= 0) {
                                                 Get.toNamed(
@@ -100,7 +102,7 @@ class CartPage extends StatelessWidget {
                                                 var recommendedIndex = Get.find<
                                                         RecommendedProductController>()
                                                     .recommendedProductList
-                                                    .indexOf(_cartList[index]
+                                                    .indexOf(cartList[index]
                                                         .product!);
                                                 if (recommendedIndex < 0) {
                                                   Get.snackbar(
@@ -121,7 +123,7 @@ class CartPage extends StatelessWidget {
                                               width: 100,
                                               height: 100,
                                               margin:
-                                                  EdgeInsets.only(bottom: 10),
+                                                  const EdgeInsets.only(bottom: 10),
                                               decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                       fit: BoxFit.cover,
@@ -139,9 +141,9 @@ class CartPage extends StatelessWidget {
                                                   color: Colors.white),
                                             ),
                                           ),
-                                          SizedBox(height: 10),
+                                          const SizedBox(height: 10),
                                           Expanded(
-                                              child: Container(
+                                              child: SizedBox(
                                             height: 100,
                                             child: Column(
                                               crossAxisAlignment:
@@ -154,22 +156,20 @@ class CartPage extends StatelessWidget {
                                                       .getItems[index].name!,
                                                   color: Colors.black54,
                                                 ),
-                                                SmallText(text: "Spicy"),
+                                                const SmallText(text: "Spicy"),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
                                                     BigText(
-                                                      text: "Ksh " +
-                                                          cartController
+                                                      text: "Ksh ${cartController
                                                               .getItems[index]
-                                                              .price
-                                                              .toString(),
+                                                              .price}",
                                                       color: Colors.redAccent,
                                                     ),
                                                     Container(
-                                                      padding: EdgeInsets.only(
+                                                      padding: const EdgeInsets.only(
                                                           top: 10,
                                                           bottom: 10,
                                                           left: 10,
@@ -184,39 +184,39 @@ class CartPage extends StatelessWidget {
                                                           GestureDetector(
                                                               onTap: () {
                                                                 cartController.addItem(
-                                                                    _cartList[
+                                                                    cartList[
                                                                             index]
                                                                         .product!,
                                                                     -1);
-                                                                // popularProduct.setQuantity(false);
+                                                                popularProduct.setQuantity(false);
                                                               },
                                                               child: Icon(
                                                                 Icons.remove,
                                                                 color: AppColors
                                                                     .signColor,
                                                               )),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             width: 5,
                                                           ),
                                                           BigText(
-                                                              text: _cartList[
+                                                              text: cartList[
                                                                       index]
                                                                   .quantity
                                                                   .toString()), 
                                                                   // popularProduct.inCartItems.toString()),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             width: 5,
                                                           ),
                                                           GestureDetector(
                                                               onTap: () {
                                                                 cartController.addItem(
-                                                                    _cartList[
+                                                                    cartList[
                                                                             index]
                                                                         .product!,
                                                                     1);
                                                                 print(
                                                                     'being tapped');
-                                                                //popularProduct.setQuantity(true);
+                                                              popularProduct.setQuantity(true);
                                                               },
                                                               child: Icon(
                                                                 Icons.add,
@@ -236,7 +236,7 @@ class CartPage extends StatelessWidget {
                                     );
                                   });
                             }))))
-                : NoDataPage(text: "Your Cart is empty, kindly add some items from home page");
+                : const NoDataPage(text: "Your Cart is empty, kindly add some items from home page");
           })
         ],
       ),
@@ -244,31 +244,30 @@ class CartPage extends StatelessWidget {
           GetBuilder<CartController>(builder: (cartController) {
         return Container(
           height: 120,
-          padding: EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
           decoration: BoxDecoration(
               color: AppColors.buttonBackgroundColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40), topRight: Radius.circular(40))),
-          child: cartController.getItems.length > 0
+          child: cartController.getItems.isNotEmpty
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           top: 20, bottom: 20, left: 20, right: 20),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white),
-                      child: cartController.getItems.length>0 ?
+                      child: cartController.getItems.isNotEmpty ?
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           BigText(
-                              text: "\$ " +
-                                  cartController.totalAmount.toString()),
-                          SizedBox(
+                              text: "\kshs ${cartController.totalAmount}"),
+                          const SizedBox(
                             width: 5,
                           ),
                         ],
@@ -278,36 +277,36 @@ class CartPage extends StatelessWidget {
                       onTap: () {
                         
                         var cartController = Get.find<CartController>();
-                        // if (cartController.getItems.isNotEmpty) {
-                        //   var product = cartController.getItems.first
-                        //       .product; // Assuming each item has a 'product' field
-                        //   if (product != null) {
-                        //     var popularProduct =
-                        //         Get.find<PopularProductController>();
-                        //     popularProduct.addItem(product);
-                        //     //print('tapped');
-                        //     cartController
-                        //         .addToHistory(); // Assuming this method exists and is what you intended to call
-                        //   }
-                        // }
-                        //print("Tapped");
+                        if (cartController.getItems.isNotEmpty) {
+                          var product = cartController.getItems.first
+                              .product; // Assuming each item has a 'product' field
+                          if (product != null) {
+                            var popularProduct =
+                                Get.find<PopularProductController>();
+                            popularProduct.addItem(product);
+                            //print('tapped');
+                            cartController
+                                .addToHistory(); // Assuming this method exists and is what you intended to call
+                          }
+                        }
+                        print("Tapped");
                         cartController.addToHistory();
                       },
                       child: Container(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 20, bottom: 20, left: 20, right: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: AppColors.mainColor),
                         child: BigText(
                           text: 'Check out',
                           color: Colors.white,
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: AppColors.mainColor),
                       ),
                     )
                   ],
                 )
-              : Container(child: Center(child: Text("Your Cart Is Empty"))),
+              : Container(child: const Center(child: Text("Your Cart Is Empty"))),
         );
       }),
     );

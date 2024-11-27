@@ -18,7 +18,7 @@ class IconAndTextWidget extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: iconColor,), 
-        SizedBox(width: 5,),
+        const SizedBox(width: 5,),
         SmallText(text: text,)
       ],
     );

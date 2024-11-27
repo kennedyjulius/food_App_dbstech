@@ -6,7 +6,8 @@ import 'package:food_app_part1/pages/account_page.dart';
 import 'package:food_app_part1/pages/acrchive_page.dart';
 import 'package:food_app_part1/pages/cart/cart_history.dart';
 import 'package:food_app_part1/pages/cart/cart_page.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,10 +56,10 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _buildScreens() {
         return [
-          MainFoodPage(),
-          ArchivePage(),
-           CartHistory(),
-           AccountPage(),
+          const MainFoodPage(),
+          const ArchivePage(),
+           const CartHistory(),
+           const AccountPage(),
 
            
         ];
@@ -67,25 +68,25 @@ class _HomePageState extends State<HomePage> {
     List<PersistentBottomNavBarItem> _navBarsItems() {
         return [
             PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.home),
+                icon: const Icon(CupertinoIcons.home),
                 title: ("Home"),
                 activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.archivebox),
+                icon: const Icon(CupertinoIcons.archivebox),
                 title: ("Archive"),
                 activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.shopping_cart),
+                icon: const Icon(CupertinoIcons.shopping_cart),
                 title: ("Cart"),
                 activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
-                icon: Icon(CupertinoIcons.person_2),
+                icon: const Icon(CupertinoIcons.person_2),
                 title: ("Me"),
                 activeColorPrimary: CupertinoColors.activeOrange,
                 inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -101,27 +102,27 @@ class _HomePageState extends State<HomePage> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
-        confineInSafeArea: true,
+        confineToSafeArea: true,
         backgroundColor: Colors.white, // Default is Colors.white.
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
         stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+        //hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(10.0),
           colorBehindNavBar: Colors.white,
         ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
-        ),
+        // popAllScreensOnTapOfSelectedTab: true,
+        // popActionScreens: PopActionScreensType.all,
+        // itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+        //   duration: Duration(milliseconds: 200),
+        //   curve: Curves.ease,
+        // ),
+        // screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+        //   animateTabTransition: true,
+        //   curve: Curves.ease,
+        //   duration: Duration(milliseconds: 200),
+        // ),
         navBarStyle: NavBarStyle.style5, // Choose the nav bar style with this property.
     );
   }

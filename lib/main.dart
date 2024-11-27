@@ -6,10 +6,8 @@ import 'package:food_app_part1/controllers/recommended_product_controller.dart';
 import 'package:food_app_part1/data/api/api_client.dart';
 import 'package:food_app_part1/data/repository/popular_product_repo.dart';
 import 'package:food_app_part1/data/repository/recommended_product_repo.dart';
-import 'package:food_app_part1/pages/splash/splash_page.dart';
 import 'package:food_app_part1/routes/routes_helper.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'helpers/dependecies.dart' as dep;
 
 Future<void> main() async {
@@ -52,7 +50,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter Food',
       theme: ThemeData(
         useMaterial3: true,
       ),

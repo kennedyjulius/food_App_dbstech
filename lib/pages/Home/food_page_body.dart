@@ -25,8 +25,8 @@ class FoodPageBody extends StatefulWidget {
 class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
-  double _scaleFactor = 0.8;
-  double _height = 220;
+  final double _scaleFactor = 0.8;
+  final double _height = 220;
 
   @override
   void initState() {
@@ -40,6 +40,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   void dispose() {
+    super.dispose();
     pageController.dispose();
   }
 
@@ -50,7 +51,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         GetBuilder<PopularProductController>(
           builder: (popularProducts) {
           return popularProducts.isLoaded
-              ? Container(
+              ? SizedBox(
                   //color: Colors.red,
                   height: 320,
                   child: PageView.builder(
@@ -89,20 +90,20 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: 'Recommended'),
+              const BigText(text: 'Recommended'),
               const SizedBox(
                 width: 10,
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 3),
-                child: BigText(text: '.', color: Colors.black26),
+                child: const BigText(text: '.', color: Colors.black26),
               ),
               const SizedBox(
                 width: 10,
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 2),
-                child: SmallText(
+                child: const SmallText(
                   text: 'Food Paring',
                 ),
               )
@@ -166,7 +167,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      SmallText(
+                                      const SmallText(
                                           text: "with chinese characteristics"),
                                       const SizedBox(
                                         height: 10,
@@ -208,7 +209,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   }
 
   Widget _buildPageItem(int index, ProductModel popularProduct) {
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
       var currTrans = _height * (1 - currScale) / 2;

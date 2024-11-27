@@ -12,7 +12,7 @@ class Apiclient extends GetConnect implements GetxController {
 
   Apiclient({required this.appBaseUrl, required String token}) {
     baseUrl = appBaseUrl;
-    timeout = Duration(seconds: 30);
+    timeout = const Duration(seconds: 30);
     token = AppConstants.TOKEN;
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',

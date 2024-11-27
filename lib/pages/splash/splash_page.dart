@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
     // ignore: unnecessary_new
     animation = new CurvedAnimation(parent: controller, curve: Curves.linear);
 
-    Timer(Duration(seconds: 4),() => Get.offNamed(RouteHelper.initial));
+    Timer(const Duration(seconds: 4),() => Get.offNamed(RouteHelper.initial));
   }
 
   @override

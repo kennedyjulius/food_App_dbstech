@@ -26,7 +26,7 @@ class CartHistory extends StatelessWidget {
     var getCartHistoryList =
         Get.find<CartController>().getCartHistoryList().reversed.toList();
 
-    Map<String, int> cartItemsPerOrder = Map();
+    Map<String, int> cartItemsPerOrder = {};
 
     for (int i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
@@ -67,11 +67,11 @@ class CartHistory extends StatelessWidget {
             height: 100,
             color: AppColors.mainColor,
             width: double.maxFinite,
-            padding: EdgeInsets.only(top: 45),
+            padding: const EdgeInsets.only(top: 45),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BigText(
+                const BigText(
                   text: "Cart History",
                   color: Colors.white,
                 ),
@@ -88,7 +88,7 @@ class CartHistory extends StatelessWidget {
             return cartController.getCartHistoryList().isNotEmpty
                 ? Expanded(
                     child: Container(
-                        margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                        margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
                         child: MediaQuery.removePadding(
                           removeTop: true,
                           context: context,
@@ -97,13 +97,13 @@ class CartHistory extends StatelessWidget {
                               for (int i = 0; i < itemsPerOrder.length; i++)
                                 Container(
                                   height: 120,
-                                  margin: EdgeInsets.only(bottom: 20),
+                                  margin: const EdgeInsets.only(bottom: 20),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       timeWidget(listCounter),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       Row(
@@ -122,7 +122,7 @@ class CartHistory extends StatelessWidget {
                                                   ? Container(
                                                       height: 80,
                                                       width: 80,
-                                                      margin: EdgeInsets.only(
+                                                      margin: const EdgeInsets.only(
                                                           right: 5),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
@@ -140,14 +140,14 @@ class CartHistory extends StatelessWidget {
                                                                               1]
                                                                       .img!))),
                                                     )
-                                                  : Container(
+                                                  : SizedBox(
                                                     height: MediaQuery.of(context).size.height/1.5,
-                                                    child: NoDataPage(text: "You Didn't Buy anything", 
+                                                    child: const NoDataPage(text: "You Didn't Buy anything", 
                                                     imgPath: "assets/empty_box.png",),
                                                   );
                                             }),
                                           ),
-                                          Container(
+                                          SizedBox(
                                             height: 80,
                                             child: Column(
                                               mainAxisAlignment:
@@ -160,9 +160,7 @@ class CartHistory extends StatelessWidget {
                                                     color:
                                                         AppColors.titleColor),
                                                 BigText(
-                                                  text: itemsPerOrder[i]
-                                                          .toString() +
-                                                      " Items",
+                                                  text: "${itemsPerOrder[i]} Items",
                                                   color: AppColors.titleColor,
                                                 ),
                                                 GestureDetector(

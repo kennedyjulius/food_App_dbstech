@@ -29,8 +29,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
                   Column(
                     children: [
                       BigText(text: "Kenya", color: AppColors.mainColor,),
-                      SmallText(text: "Nairobi", color: Colors.black54,),
-                      Icon(Icons.arrow_drop_down)
+                      const SmallText(text: "Nairobi", color: Colors.black54,),
+                      const Icon(Icons.arrow_drop_down)
                     ],
                   ),
                   Center( 
@@ -41,14 +41,14 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor
                       ),
-                      child: Icon(Icons.search, color: Colors.white, size: 24,),
+                      child: const Icon(Icons.search, color: Colors.white, size: 24,),
                     ),
                   )
                 ],
               ),
             ),
           ),
-        Expanded(
+        const Expanded(
           child: SingleChildScrollView(
             child: FoodPageBody(),
             )

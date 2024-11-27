@@ -27,12 +27,12 @@ class AppIcon extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(size / 2),
-        color: backgroundColor ?? Color(0xFFfcf4e4), // Use null-aware operator
+        color: backgroundColor ?? const Color(0xFFfcf4e4), // Use null-aware operator
       ),
       
       child: Icon(
         icon,
-        color: iconColor ?? Color(0xFF756d54),
+        color: iconColor ?? const Color(0xFF756d54),
         size: iconSize, // Use null-aware operator
       ),
     );

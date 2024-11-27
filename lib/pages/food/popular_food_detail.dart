@@ -69,8 +69,9 @@ class PopularFoodDetail extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                       onTap: () {
-                        if (controller.totalItems >= 1)
+                        if (controller.totalItems >= 1) {
                           Get.toNamed(RouteHelper.getCartPage());
+                        }
                       },
                       child: GestureDetector(
                         onTap: () {
@@ -218,13 +219,13 @@ class PopularFoodDetail extends StatelessWidget {
                       bottom: Dimensions.height20,
                       left: Dimensions.width20,
                       right: Dimensions.width20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.mainColor),
                   child: BigText(
                     text: 'Ksh ${product.price!} | Add to cart',
                     color: Colors.white,
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor),
                 ),
               )
             ],

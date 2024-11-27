@@ -26,7 +26,7 @@ class MyformField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
       child: Container(
         height: 60,
-        margin: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+        margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
         child: TextField(
           obscureText: obscureText,
           controller: controller,
